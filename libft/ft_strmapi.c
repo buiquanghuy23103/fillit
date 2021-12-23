@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 22:22:02 by hbui              #+#    #+#             */
-/*   Updated: 2021/11/22 22:23:54 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/20 20:33:10 by huybui           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 	if (!f)
 		return (dup);
 	i = 0;
-	while (i < ft_strlen(s))
+	while (s[i])
 	{
 		dup[i] = f(i, s[i]);
 		i++;

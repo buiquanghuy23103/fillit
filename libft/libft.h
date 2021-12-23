@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 18:57:25 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/08 21:19:40 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/22 07:32:59 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,9 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+
+# define BUFF_SIZE 8
+# define FD_MAX 4096
 
 void	*ft_memset(void *b, int c, size_t len);
 void	ft_bzero(void *s, size_t n);
@@ -71,13 +74,6 @@ void	ft_putstr_fd(char const *s, int fd);
 void	ft_putendl_fd(char const *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 
-int		ft_numlen(int n);
-int		ft_abs(int n);
-int		ft_isspace(int c);
-void	ft_tabndel(void **tab, size_t tab_len);
-void	ft_tabdel(void **tab);
-size_t	ft_tablen(const void **tab);
-
 typedef struct s_list
 {
 	void			*content;
@@ -91,5 +87,14 @@ void	ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 void	ft_lstadd(t_list **alst, t_list *new);
 void	ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list	*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
+
+int		ft_numlen(int n);
+int		ft_abs(int n);
+int		ft_isspace(int c);
+void	ft_tabndel(void ***tab, size_t tab_len);
+void	ft_tabdel(void ***tab);
+size_t	ft_tablen(const void **tab);
+int		ft_set(int *ret, int new_val);
+int		get_next_line(const int fd, char **line);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/27 16:26:15 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/06 22:46:07 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/21 22:43:49 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,21 @@
 
 void	*ft_memccpy(void *dst, const void *src, int c, size_t n)
 {
-	const unsigned char	*str_src;
-	unsigned char		ch;
 	size_t				i;
+	unsigned char		*str_dst;
+	const unsigned char	*str_src;
+	unsigned char		unsigned_c;
 
-	str_src = (const unsigned char *) src;
-	ch = (unsigned char) c;
 	i = 0;
-	while (str_src[i] && i < n && str_src[i] != ch)
-		i++;
-	if (str_src[i] == ch)
+	str_dst = (unsigned char *) dst;
+	str_src = (const unsigned char *) src;
+	unsigned_c = (unsigned char) c;
+	while (i < n)
 	{
+		str_dst[i] = str_src[i];
+		if (str_src[i] == unsigned_c)
+			return (dst + i + 1);
 		i++;
-		ft_memcpy(dst, src, i);
-		return (dst + i);
 	}
-	ft_memcpy(dst, src, n);
 	return (NULL);
 }

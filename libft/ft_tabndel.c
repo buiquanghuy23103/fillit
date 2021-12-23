@@ -6,26 +6,27 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 21:20:50 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/09 12:07:02 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/21 22:48:36 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-void	ft_tabndel(void **tab, size_t tab_len)
+void	ft_tabndel(void ***tab, size_t tab_len)
 {
 	size_t	i;
-	int		**itab;
+	int		***itab;
 
-	if (tab && *tab && tab_len > 0)
+	if (tab && *tab && **tab && tab_len > 0)
 	{
 		i = 0;
-		itab = (int **) tab;
+		itab = (int ***) tab;
 		while (i < tab_len)
 		{
-			free(itab[i]);
+			free(*itab[i]);
 			i++;
 		}
-		free(tab);
+		free(*itab);
+		*itab = NULL;
 	}
 }
