@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 18:57:25 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/22 07:32:59 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/26 23:05:38 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <string.h>
+# include <fcntl.h>
 
 # define BUFF_SIZE 8
 # define FD_MAX 4096
@@ -96,5 +97,7 @@ void	ft_tabdel(void ***tab);
 size_t	ft_tablen(const void **tab);
 int		ft_set(int *ret, int new_val);
 int		get_next_line(const int fd, char **line);
+void	ft_open_close_file(const char *path, int oflag,
+			void (*handle_error)(void), void (*use)(int fd));
 
 #endif

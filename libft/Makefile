@@ -6,7 +6,7 @@
 #    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/10/07 11:39:05 by hbui              #+#    #+#              #
-#    Updated: 2021/12/22 07:26:10 by hbui             ###   ########.fr        #
+#    Updated: 2021/12/26 21:15:03 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,8 @@ ft_strlen.c ft_strmap.c ft_strmapi.c ft_strncat.c ft_strncmp.c \
 ft_strncpy.c ft_strnequ.c ft_strnew.c ft_strnstr.c ft_strrchr.c \
 ft_strsplit.c ft_strstr.c ft_strsub.c ft_strtrim.c ft_tolower.c ft_toupper.c \
 ft_lstnew.c ft_lstdelone.c ft_lstdel.c ft_lstadd.c ft_lstiter.c ft_lstmap.c \
-ft_tabndel.c ft_tabdel.c ft_tablen.c ft_set.c get_next_line.c
+ft_tabndel.c ft_tabdel.c ft_tablen.c ft_set.c get_next_line.c \
+ft_open_close_file.c
 
 OBJS = $(SRCS:%.c=$(BUILD_DIR)/%.o)
 
