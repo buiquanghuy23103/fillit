@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/26 18:03:21 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/26 18:15:22 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/27 08:25:03 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,8 @@ void	ft_open_close_file(const char *path, int oflag,
 
 	fd = open(path, oflag);
 	if (fd == -1)
-	{
 		handle_error();
-		exit(EXIT_FAILURE);
-	}
 	use(fd);
 	if (close(fd) == -1)
-	{
 		handle_error();
-		exit(EXIT_FAILURE);
-	}
 }
