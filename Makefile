@@ -6,7 +6,7 @@
 #    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2021/12/29 21:29:10 by hbui             ###   ########.fr        #
+#    Updated: 2021/12/29 21:35:57 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,7 @@ OBJS=$(SRCS:%.c=$(BUILD_DIR)/%.o)
 all: $(NAME)
 
 $(NAME): $(OBJS) $(LIBFT_DIR)/libft.a
-	$(CC) -o $@ $< $(INCLUDE) $(LIB)
+	$(CC) $(CFLAGS) -o $@ $< $(INCLUDE) $(LIB)
 
 $(OBJS): $(BUILD_DIR)/%.o :%.c
 	mkdir -p $(dir $@)
