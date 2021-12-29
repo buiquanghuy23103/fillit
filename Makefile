@@ -6,7 +6,7 @@
 #    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2021/12/29 21:35:57 by hbui             ###   ########.fr        #
+#    Updated: 2021/12/29 21:38:28 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,3 +44,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+debug: CFLAGS += -g
+debug: re
