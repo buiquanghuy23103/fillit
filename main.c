@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:26:25 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/30 11:42:16 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/30 11:49:04 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,16 @@ void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_read_line(char *line, int *a)
+void	ft_read_line(char *line, int *a, int *blocks)
 {
 	*a = -1;
 	while (line[++(*a)])
 	{
-		if (line[*a] != '#' && line[*a] != '.')
+		if (line[*a] == '#')
+			(*blocks)++;
+		else if (line[*a] == '.')
+			;
+		else
 			ft_error();
 	}
 }
@@ -33,9 +37,11 @@ void	ft_solve(int fd)
 	char	*line;
 	int		a;
 	int		height;
+	int		blocks;
 
 	height = 0;
 	a = 4;
+	blocks = 0;
 	while (a == 4 && ft_set(&a, get_next_line(fd, &line)) != -1
 		&& ((line && line[0]) || height == 4))
 	{
@@ -43,7 +49,9 @@ void	ft_solve(int fd)
 			return ;
 		if (!ft_set(&height, height * !!line[0] + !!line[0]) && ft_set(&a, 4))
 			continue ;
-		ft_read_line(line, &a);
+		ft_read_line(line, &a, &blocks);
+		if (height == 4 && (blocks != 4 || ft_set(&blocks, 0)))
+			ft_error();
 	}
 	ft_error();
 }
