@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:26:25 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/30 11:39:09 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/30 11:42:16 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,16 @@ void	ft_error(void)
 {
 	ft_putstr("error\n");
 	exit(EXIT_FAILURE);
+}
+
+void	ft_read_line(char *line, int *a)
+{
+	*a = -1;
+	while (line[++(*a)])
+	{
+		if (line[*a] != '#' && line[*a] != '.')
+			ft_error();
+	}
 }
 
 void	ft_solve(int fd)
@@ -33,9 +43,7 @@ void	ft_solve(int fd)
 			return ;
 		if (!ft_set(&height, height * !!line[0] + !!line[0]) && ft_set(&a, 4))
 			continue ;
-		a = -1;
-		while (line[++a])
-			;
+		ft_read_line(line, &a);
 	}
 	ft_error();
 }
