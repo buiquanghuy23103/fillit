@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:26:25 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/30 10:47:24 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/30 10:52:19 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,19 +25,18 @@ void	ft_solve(int fd)
 	int		height;
 
 	height = 0;
-	while (ft_set(&a, get_next_line(fd, &line)) != -1)
+	a = 4;
+	while (a == 4 && ft_set(&a, get_next_line(fd, &line)) != -1)
 	{
 		if ((!line || !line[0]) && height != 4)
 			ft_error();
 		if (a == 0)
 			return ;
-		if (!ft_set(&height, height * !!line[0] + !!line[0]))
+		if (!ft_set(&height, height * !!line[0] + !!line[0]) && ft_set(&a, 4))
 			continue ;
 		a = -1;
 		while (line[++a])
 			;
-		if (a != 4)
-			ft_error();
 	}
 	ft_error();
 }
