@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:26:25 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/30 11:49:04 by hbui             ###   ########.fr       */
+/*   Updated: 2021/12/30 15:50:06 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,17 @@ void	ft_error(void)
 
 void	ft_read_line(char *line, int *a, int *blocks)
 {
+	int	n;
+
+	n = 0;
 	*a = -1;
 	while (line[++(*a)])
 	{
 		if (line[*a] == '#')
+		{
 			(*blocks)++;
+			n = ft_setbit(n, *a);
+		}
 		else if (line[*a] == '.')
 			;
 		else
