@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:26:25 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/30 15:50:06 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/01 12:55:23 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ void	ft_read_line(char *line, int *a, int *blocks)
 			(*blocks)++;
 			n = ft_setbit(n, *a);
 		}
-		else if (line[*a] == '.')
-			;
-		else
+		else if (line[*a] != '.')
 			ft_error();
 	}
 }
