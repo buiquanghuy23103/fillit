@@ -6,7 +6,7 @@
 #    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2021/12/29 21:38:28 by hbui             ###   ########.fr        #
+#    Updated: 2022/01/02 21:13:14 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -45,5 +45,5 @@ fclean: clean
 
 re: fclean all
 
-debug: CFLAGS += -g
+debug: CFLAGS += -g -fsanitize=address
 debug: re
