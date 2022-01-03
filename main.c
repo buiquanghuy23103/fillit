@@ -6,12 +6,11 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/03 18:09:59 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/03 20:31:17 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdio.h>
 #include <stdint.h>
 
 static const uint16_t	valid[112] = {0b1100100010000000, 0b0110010001000000, 0b0011001000100000,
