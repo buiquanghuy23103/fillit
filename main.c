@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/03 18:06:48 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/03 20:50:34 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -122,6 +122,7 @@ void	ft_init_t(int *t)
 	}
 }
 
+
 int	ft_validate(int fd, t_tetr *storage)
 {
 	char	tmp[22];
@@ -130,15 +131,24 @@ int	ft_validate(int fd, t_tetr *storage)
 	int		ret;
 	int		tc;
 	int		t[16];
+	int		last;
 
+	last = 0;
 	tc = 0;
 	ret = read(fd, tmp, 21);
 	tmp[21] = '\0';
-	while (ret == 21)
+	while (ret == 21 || ret == 20)
 	{
 		j = 0;
 		i = -1;
 		ft_init_t(t);
+		if (ret == 20)
+		{
+			last = 1;
+			tmp[20] = '\n';
+		}
+		if (ret == 21)
+			last = 0;
 		while (tmp[++i])
 		{
 			if (!((i + 1) % 5) || !((i + 1) % 21))
@@ -154,7 +164,7 @@ int	ft_validate(int fd, t_tetr *storage)
 			j++;
 		}
 		ret = read(fd, tmp, 21);
-		if (!(ft_set_storage(storage, t, tc++)))
+		if (!(ft_set_storage(storage, t, tc++)) || (!last && !ret))
 			return (0);
 	}
 	return(!ret && tc > 0);
