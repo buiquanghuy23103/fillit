@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/03 22:08:01 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/03 22:12:42 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -189,6 +189,5 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		ft_error();
 	ft_validate(fd, storage);
-	ft_putstr("Valid input\n");
 	return (0);
 }
