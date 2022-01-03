@@ -6,7 +6,7 @@
 #    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2022/01/02 21:13:14 by hbui             ###   ########.fr        #
+#    Updated: 2022/01/03 08:02:30 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ all: $(NAME)
 $(NAME): $(OBJS) $(LIBFT_DIR)/libft.a
 	$(CC) $(CFLAGS) -o $@ $< $(INCLUDE) $(LIB)
 
-$(OBJS): $(BUILD_DIR)/%.o :%.c
+$(OBJS): $(BUILD_DIR)/%.o :%.c *.h
 	mkdir -p $(dir $@)
 	$(CC) $(CFLAGS) $(INCLUDE) -c $< -o $@
 
