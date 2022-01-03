@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/03 18:06:48 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/03 18:09:59 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,6 @@ int	ft_set_storage(t_tetr *storage, int *tmp, int tc)
 	}
 	if (!proper)
 		return (0);
-	printf("Tetrimino %d: %d %d %d %d\n", tc, storage->tmino[tc][0], storage->tmino[tc][1], storage->tmino[tc][2], storage->tmino[tc][3]);
 	return (1);
 }
 
@@ -177,6 +176,5 @@ int	main(int argc, char **argv)
 	else
 		if (!ft_validate(fd, storage))
 			ft_error();
-	ft_putstr("Valid input\n");
 	return (0);
 }
