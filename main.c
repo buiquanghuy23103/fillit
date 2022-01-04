@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/04 11:44:02 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:20:41 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,26 +68,39 @@ void	ft_inil_tetr(t_tetr	*tetr, int size)
 	j = 0;
 	while (i < 26)
 	{
-		while (j < 16)
+		while (j < 17)
 		{
 			tetr->tmino[i][j] = 0;
 			++j;
 		}
+		tetr->tmino[i][j] = size;
 		j = 0;
 		++i;
 	}
-	tetr->size = size;
 	tetr->tcount = 0;
+}
+void	ft_set_srow(t_tetr *storage)
+{
+	int	i;
+
+	i = 0;
+	while (i < 16)
+	{
+		if (storage->tmino[storage->tcount][i] != 0)
+		{
+			storage->tmino[storage->tcount][SROW] = i;
+			return ;
+		}
+		++i;
+	}
 }
 
 void	ft_set_storage(t_tetr *storage, int *tmp)
 {
 	int			i;
-	int			proper;
 	uint16_t	value;
 
 	value = 0;
-	proper = 0;
 	i = 0;
 	while (i < 16)
 	{
@@ -98,15 +111,15 @@ void	ft_set_storage(t_tetr *storage, int *tmp)
 		}
 		++i;
 	}
+	ft_set_srow(storage);
 	i = 0;
 	while (i < 112)
 	{
 		if (value == valid[i])
-			proper = 1;
+			return ;
 		++i;
 	}
-	if (!proper)
-		ft_error();
+	ft_error();
 }
 
 void	ft_init_t(int *t)

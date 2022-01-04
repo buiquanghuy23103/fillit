@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 11:44:40 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/04 14:20:06 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,12 @@
 # include "libft.h"
 # include <fcntl.h>
 
+# define SIZE 17
+# define SROW 16
+
 typedef struct s_tetr
 {
-	int	tmino[26][16];
-	int	size;
+	int	tmino[26][18];
 	int	tcount;
 }	t_tetr;
 
