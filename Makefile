@@ -6,7 +6,7 @@
 #    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2022/01/03 08:02:30 by hbui             ###   ########.fr        #
+#    Updated: 2022/01/04 09:45:51 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,7 @@ LIB=-L$(LIBFT_DIR) -lft
 CFLAGS=-Wall -Werror -Wextra
 
 SRCS=main.c
+SRCS += ft_topleft.c
 OBJS=$(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 all: $(NAME)
