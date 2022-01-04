@@ -6,7 +6,7 @@
 #    By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2022/01/04 20:53:12 by jpikkuma         ###   ########.fr        #
+#    Updated: 2022/01/04 21:16:09 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,7 +23,6 @@ SRCS = ft_top.c ft_left.c
 SRCS += utils.c preparation.c ft_topleft.c
 SRCS += main.c
 SRCS += print.c
-OBJS=$(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 all: $(NAME)
 
