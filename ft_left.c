@@ -6,13 +6,13 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 14:16:46 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 15:32:12 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/04 22:14:47 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_left(int *tetrimino, const unsigned int size)
+void	ft_left(int *tetrimino)
 {
 	int	max;
 	int	i;
@@ -20,13 +20,11 @@ void	ft_left(int *tetrimino, const unsigned int size)
 	int	longest;
 	int	shift;
 
-	max = ft_setbit(0, size);
-	i = 0;
+	max = ft_setbit(0, tetrimino[SIZE]);
+	i = tetrimino[SROW];
 	longest = 0;
 	k = 0;
 	shift = -1;
-	while (i < 16 && !tetrimino[i])
-		i++;
 	while (k < 4)
 	{
 		if (tetrimino[i + k] > longest)

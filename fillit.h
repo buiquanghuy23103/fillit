@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 20:54:17 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/04 22:16:29 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,9 @@ typedef struct s_tetr
 	int	tcount;
 }	t_tetr;
 
-void	ft_topleft(int tetrimino[16], const unsigned int size);
+void	ft_topleft(int *tetrimino);
 void	ft_top(int tetrimino[]);
-void	ft_left(int *tetrimino, const unsigned int size);
+void	ft_left(int *tetrimino);
 void	ft_error(void);
 void	ft_inil_tetr(t_tetr	*tetr, int size);
 char	**ft_inil_array(t_tetr *t);

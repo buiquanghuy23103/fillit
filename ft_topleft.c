@@ -6,14 +6,14 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/03 21:08:28 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 15:35:10 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/04 22:16:07 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_topleft(int tetrimino[16], const unsigned int size)
+void	ft_topleft(int *tetrimino)
 {
 	ft_top(tetrimino);
-	ft_left(tetrimino, size);
+	ft_left(tetrimino);
 }
