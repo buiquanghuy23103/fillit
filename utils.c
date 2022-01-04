@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 21:05:34 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/04 21:14:29 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ char	**ft_inil_array(t_tetr *t)
 		ft_error();
 	while (i < t->tmino[0][SIZE])
 	{
-		p[i] = (char *)ft_memalloc(sizeof(char) * t->tmino[0][SIZE] + 1);
+		p[i] = (char *)ft_memalloc(sizeof(char) * (t->tmino[0][SIZE] + 1));
 		if (!p[i])
 		{
 			while (i-- > 0)
