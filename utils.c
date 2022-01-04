@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 15:50:05 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/04 21:05:34 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,30 @@ void	ft_inil_tetr(t_tetr	*tetr, int size)
 		++i;
 	}
 	tetr->tcount = 0;
+}
+
+char	**ft_inil_array(t_tetr *t)
+{
+	char	**p;
+	int		i;
+
+	i = 0;
+	p = (char **)ft_memalloc(sizeof(char *) * t->tmino[0][SIZE]);
+	if (!p)
+		ft_error();
+	while (i < t->tmino[0][SIZE])
+	{
+		p[i] = (char *)ft_memalloc(sizeof(char) * t->tmino[0][SIZE] + 1);
+		if (!p[i])
+		{
+			while (i-- > 0)
+			{
+				free(p[i]);
+			}
+			ft_error();
+		}
+		ft_memset(p[i], '.', t->tmino[0][SIZE]);
+		i++;
+	}
+	return (p);
 }

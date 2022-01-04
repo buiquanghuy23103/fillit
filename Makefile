@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
+#    By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2022/01/04 16:39:21 by hbui             ###   ########.fr        #
+#    Updated: 2022/01/04 20:53:12 by jpikkuma         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,6 +22,7 @@ CFLAGS=-Wall -Werror -Wextra
 SRCS = ft_top.c ft_left.c
 SRCS += utils.c preparation.c ft_topleft.c
 SRCS += main.c
+SRCS += print.c
 OBJS=$(SRCS:%.c=$(BUILD_DIR)/%.o)
 
 all: $(NAME)

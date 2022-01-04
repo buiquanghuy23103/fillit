@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 15:55:08 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/04 20:54:17 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ void	ft_top(int tetrimino[]);
 void	ft_left(int *tetrimino, const unsigned int size);
 void	ft_error(void);
 void	ft_inil_tetr(t_tetr	*tetr, int size);
+char	**ft_inil_array(t_tetr *t);
+void	ft_print_tetriminos(t_tetr *t);
 void	ft_validate(int fd, t_tetr *storage);
 
 #endif
