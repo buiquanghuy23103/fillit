@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/03 22:12:42 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/04 11:44:02 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	ft_error(void)
 	exit(EXIT_FAILURE);
 }
 
-void	ft_inil_tetr(t_tetr	*tetr)
+void	ft_inil_tetr(t_tetr	*tetr, int size)
 {
 	int	i;
 	int	j;
@@ -68,7 +68,7 @@ void	ft_inil_tetr(t_tetr	*tetr)
 	j = 0;
 	while (i < 26)
 	{
-		while (j < 4)
+		while (j < 16)
 		{
 			tetr->tmino[i][j] = 0;
 			++j;
@@ -76,6 +76,7 @@ void	ft_inil_tetr(t_tetr	*tetr)
 		j = 0;
 		++i;
 	}
+	tetr->size = size;
 	tetr->tcount = 0;
 }
 
@@ -184,7 +185,7 @@ int	main(int argc, char **argv)
 		ft_putstr("usage:\t./fillit target_file\n");
 		return (0);
 	}
-	ft_inil_tetr(storage);
+	ft_inil_tetr(storage, 4);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_error();
