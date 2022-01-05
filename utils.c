@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 15:43:30 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 17:03:26 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	**ft_inil_array(t_tetr *t)
 	return (p);
 }
 
-void	ft_remove_piece(int *dst, int *src)
+void	ft_remove_piece(int **dst, int *src)
 {
 	int	i;
 	int	h;
@@ -75,7 +75,7 @@ void	ft_remove_piece(int *dst, int *src)
 	h = src[HEIGHT];
 	while (i < h)
 	{
-		dst[i] ^= src[i];
+		(*dst)[i] ^= src[i];
 		++i;
 	}
 }
