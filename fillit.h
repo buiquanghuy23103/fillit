@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 11:27:36 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 13:57:52 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,5 +38,8 @@ void	ft_print_tetriminos(t_tetr *t);
 void	ft_validate(int fd, t_tetr *storage);
 int		ft_check_fit(int *dst, int *src);
 void	ft_remove_piece(int *dst, int *src);
+void	ft_solve(int *solution, t_tetr *storage);
+void	ft_place_piece(int *dst, int *src);
+void	ft_set_minsize(t_tetr *storage);
 
 #endif
