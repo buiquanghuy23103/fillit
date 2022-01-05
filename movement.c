@@ -1,16 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_left.c                                          :+:      :+:    :+:   */
+/*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/01/04 14:16:46 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 22:14:47 by hbui             ###   ########.fr       */
+/*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
+/*   Updated: 2022/01/05 08:40:04 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	ft_top(int *tetrimino)
+{
+	int	i;
+
+	i = tetrimino[SROW];
+	if (i == 0)
+		return ;
+	ft_memmove(tetrimino, tetrimino + i, sizeof(int) * (16 - i));
+	tetrimino[SROW] = 0;
+}
 
 void	ft_left(int *tetrimino)
 {
@@ -36,4 +47,10 @@ void	ft_left(int *tetrimino)
 	k = -1;
 	while (++k < 4 && shift > 0)
 		tetrimino[i + k] = tetrimino[i + k] << shift;
+}
+
+void	ft_topleft(int *tetrimino)
+{
+	ft_top(tetrimino);
+	ft_left(tetrimino);
 }
