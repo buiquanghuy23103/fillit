@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 10:50:00 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 11:57:49 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,19 @@
 void	ft_top(int *tetrimino)
 {
 	int	i;
+	int	h;
+	int	k;
 
 	i = tetrimino[SROW];
+	h = tetrimino[HEIGHT];
+	k = 0;
 	if (i == 0)
 		return ;
-	ft_memmove(tetrimino, tetrimino + i, sizeof(int) * (16 - i));
+	while (k < h)
+	{
+		ft_swap(&tetrimino[i + k], &tetrimino[k]);
+		k++;
+	}
 	tetrimino[SROW] = 0;
 }
 
@@ -77,16 +85,11 @@ int	ft_down(int *tetrimino)
 	int	i;
 	int	k;
 
-	height = 0;
+	height = tetrimino[HEIGHT];
 	i = tetrimino[SROW];
 	k = 0;
 	if (tetrimino[15])
 		return (0);
-	while (tetrimino[i + k])
-	{
-		height++;
-		k++;
-	}
 	while (height >= 0)
 	{
 		ft_swap(&tetrimino[i + height], &tetrimino[i + height - 1]);
