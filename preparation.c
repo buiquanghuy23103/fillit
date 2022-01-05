@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 12:57:10 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/05 17:10:54 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,8 +139,8 @@ void	ft_set_minsize(t_tetr *storage)
 	}
 	while (j < 26)
 	{
-		++j;
 		storage->tmino[j][SIZE] = i;
+		++j;
 	}
 }
 
