@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 11:39:20 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 12:34:13 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -156,7 +156,7 @@ void	ft_validate(int fd, t_tetr *storage)
 			last = 0;
 		ft_check_elems(tmp, storage);
 		ret = read(fd, tmp, 21);
-		if ((!last && !ret))
+		if ((!last && !ret) || (ret && storage->tcount == 26))
 			ft_error();
 	}
 	if (!storage->tcount || !(!ret && storage->tcount > 0))
