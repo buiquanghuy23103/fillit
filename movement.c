@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 14:26:50 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/05 15:47:18 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,12 @@ int	ft_down(int *tetrimino)
 {
 	int	height;
 	int	i;
+	int	size;
 
 	height = tetrimino[HEIGHT];
 	i = tetrimino[SROW];
-	if (tetrimino[15])
+	size = tetrimino[SIZE];
+	if (tetrimino[size - 1])
 		return (0);
 	ft_left(tetrimino);
 	while (height >= 0)
