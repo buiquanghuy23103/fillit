@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/05 14:19:00 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/05 15:32:42 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ int	main(int argc, char **argv)
 		ft_topleft(storage->tmino[i]);
 		++i;
 	}
-	ft_print_tetriminos(storage);
-	ft_putchar('\n');
 	ft_solve(solution, storage);
-	ft_print_tetriminos(storage);
+	ft_print_tetriminos(storage, storage->tcount);
 	return (0);
 }

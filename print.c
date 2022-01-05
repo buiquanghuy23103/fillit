@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/04 21:05:32 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/05 15:30:57 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ void	ft_print_tetrimino(int *arr, char **p, int c)
 	}
 }
 
-void	ft_print_tetriminos(t_tetr *t)
+void	ft_print_tetriminos(t_tetr *t, int index)
 {
 	char	**p;
 	int		i;
 
 	p = ft_inil_array(t);
 	i = 0;
-	while (i < t->tcount)
+	while (i < index)
 	{
 		ft_print_tetrimino(t->tmino[i], p, 'A' + i);
 		++i;
