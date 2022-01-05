@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 14:22:48 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/07 22:25:59 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 14:05:13 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	*ft_memset(void *b, int c, size_t len)
 		str = (unsigned char *) b;
 		while (i < len)
 		{
-			str[i] = c;
+			str[i] = ch;
 			i++;
 		}
 	}
