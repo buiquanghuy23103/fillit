@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 12:03:47 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 14:26:50 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ int	ft_down(int *tetrimino)
 	i = tetrimino[SROW];
 	if (tetrimino[15])
 		return (0);
+	ft_left(tetrimino);
 	while (height >= 0)
 	{
 		ft_swap(&tetrimino[i + height], &tetrimino[i + height - 1]);
