@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 12:34:13 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/05 12:53:06 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,18 +97,6 @@ static void	ft_set_storage(t_tetr *storage, int *tmp)
 	ft_error();
 }
 
-static void	ft_init_t(int *t)
-{
-	int	i;
-
-	i = 0;
-	while (i < 16)
-	{
-		t[i] = 0;
-		++i;
-	}
-}
-
 static void	ft_check_elems(char *tmp, t_tetr *storage)
 {
 	int	i;
@@ -117,7 +105,9 @@ static void	ft_check_elems(char *tmp, t_tetr *storage)
 
 	i = -1;
 	j = 0;
-	ft_init_t(t);
+	while (++i < 16)
+		t[i] = 0;
+	i = -1;
 	while (tmp[++i])
 	{
 		if (!((i + 1) % 5) || !((i + 1) % 21))
@@ -134,6 +124,24 @@ static void	ft_check_elems(char *tmp, t_tetr *storage)
 	}
 	ft_set_storage(storage, t);
 	storage->tcount++;
+}
+
+void	ft_set_minsize(t_tetr *storage)
+{
+	int	i;
+	int	j;
+
+	i = storage->tmino[0][SIZE];
+	j = 0;
+	while (storage->tcount * 4 > i * i)
+	{
+		++i;
+	}
+	while (j < 26)
+	{
+		++i;
+		storage->tmino[j][SIZE] = i;
+	}
 }
 
 void	ft_validate(int fd, t_tetr *storage)
@@ -161,4 +169,6 @@ void	ft_validate(int fd, t_tetr *storage)
 	}
 	if (!storage->tcount || !(!ret && storage->tcount > 0))
 		ft_error();
+	if (storage->tcount > 4)
+		ft_set_minsize(storage);
 }
