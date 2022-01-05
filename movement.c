@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 08:40:04 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 09:04:52 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,20 @@ void	ft_topleft(int *tetrimino)
 {
 	ft_top(tetrimino);
 	ft_left(tetrimino);
+}
+
+int	ft_right(int *tetrimino)
+{
+	int	k;
+	int	i;
+
+	k = -1;
+	i = tetrimino[SROW];
+	while (++k < 4)
+		if (tetrimino[i + k] % 2 != 0)
+			return (0);
+	k = -1;
+	while (++k < 4)
+		tetrimino[i + k] >>= 1;
+	return (1);
 }
