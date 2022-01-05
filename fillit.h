@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 10:32:48 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 11:27:36 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 
 typedef struct s_tetr
 {
-	int	tmino[26][18];
+	int	tmino[26][19];
 	int	tcount;
 }	t_tetr;
 

@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 09:21:33 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/05 11:39:52 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	ft_inil_tetr(t_tetr	*tetr, int size)
 			++j;
 		}
 		tetr->tmino[i][j] = size;
+		tetr->tmino[i][HEIGHT] = 0;
 		j = 0;
 		++i;
 	}

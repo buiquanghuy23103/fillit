@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/04 23:20:57 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/05 11:39:20 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,6 +82,7 @@ static void	ft_set_storage(t_tetr *storage, int *tmp)
 		{
 			value |= 1 << (15 - i);
 			storage->tmino[storage->tcount][i / 4] |= 1 << (3 - (i % 4));
+			storage->tmino[storage->tcount][HEIGHT]++;
 		}
 		++i;
 	}
