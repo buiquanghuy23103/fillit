@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/04 15:51:19 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 13:55:02 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,9 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	t_tetr	storage[1];
+	int		solution[16];
 
+	ft_bzero(solution, sizeof(solution));
 	if (argc != 2)
 	{
 		ft_putstr("usage:\t./fillit target_file\n");
@@ -27,5 +29,7 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		ft_error();
 	ft_validate(fd, storage);
+	ft_solve(solution, storage);
+	ft_print_tetriminos(storage);
 	return (0);
 }

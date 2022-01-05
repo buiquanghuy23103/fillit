@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 11:39:52 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/05 13:50:29 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,18 @@ void	ft_remove_piece(int *dst, int *src)
 	while (i < src[SIZE] && src[i] != 0)
 	{
 		dst[i] ^= src[i];
+		++i;
+	}
+}
+
+void	ft_place_piece(int *dst, int *src)
+{
+	int	i;
+
+	i = src[SROW];
+	while (i < src[SIZE] && src[i] != 0)
+	{
+		dst[i] |= src[i];
 		++i;
 	}
 }

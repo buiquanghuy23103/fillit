@@ -6,7 +6,7 @@
 #    By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2022/01/05 08:41:57 by hbui             ###   ########.fr        #
+#    Updated: 2022/01/05 23:32:35 by jpikkima         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,9 +21,10 @@ CFLAGS=-Wall -Werror -Wextra
 
 HEADERS=fillit.h
 SRCS = movement.c ft_check_fit.c
-SRCS += utils.c preparation.c 
+SRCS += utils.c preparation.c
 SRCS += main.c
 SRCS += print.c
+SRCS += solve.c
 
 all: $(NAME)
 
