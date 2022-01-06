@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/06 11:14:02 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/06 12:37:57 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ char	**ft_inil_array(t_tetr *t)
 	}
 	return (p);
 }
+
 void	ft_remove_piece(int *dst, int *src)
 {
 	int	i;
