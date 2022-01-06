@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/06 09:42:21 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/06 11:08:36 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,6 @@ void	ft_solve(int *solution, t_tetr *storage)
 	i = 0;
 	while (i < storage->tcount && nbrfitted != storage->tcount - 1)
 	{
-		ft_print_tetriminos(storage, i + 1);
-		ft_putchar('\n');
 		bt = 0;
 		if (ft_check_fit(solution, storage->tmino[i]))
 		{
@@ -55,7 +53,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 				else
 				{
 					//ft_printsol(solution);
-					ft_remove_piece(&solution, storage->tmino[i]);
+					ft_remove_piece(solution, storage->tmino[i]);
 					ft_topleft(storage->tmino[i]);
 					//ft_putstr("Remove piece\n");
 					//ft_printsol(solution);
@@ -65,7 +63,6 @@ void	ft_solve(int *solution, t_tetr *storage)
 					bt = 1;
 
 				}
-				ft_putnbr(i);
 			}
 		}
 

@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 17:03:26 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/06 11:09:09 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,16 +66,16 @@ char	**ft_inil_array(t_tetr *t)
 	return (p);
 }
 
-void	ft_remove_piece(int **dst, int *src)
+void	ft_remove_piece(int *dst, int *src)
 {
 	int	i;
-	int	h;
+	int	edge;
 
 	i = src[SROW];
-	h = src[HEIGHT];
-	while (i < h)
+	edge = src[SROW] + src[HEIGHT];
+	while (i < edge)
 	{
-		(*dst)[i] ^= src[i];
+		dst[i] ^= src[i];
 		++i;
 	}
 }
@@ -83,11 +83,11 @@ void	ft_remove_piece(int **dst, int *src)
 void	ft_place_piece(int *dst, int *src)
 {
 	int	i;
-	int	h;
+	int	edge;
 
 	i = src[SROW];
-	h = src[HEIGHT];
-	while (i < h)
+	edge = src[SROW] + src[HEIGHT];
+	while (i < edge)
 	{
 		dst[i] |= src[i];
 		++i;
