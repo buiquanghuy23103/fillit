@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/06 12:39:45 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/06 13:14:23 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 			{
 				ft_topleft(storage->tmino[i]);
 				ft_set_minsize(storage);
-				while (j < MAXTETRIMINOS)
+				while (j < storage->tcount)
 				{
 					ft_topleft(storage->tmino[j]);
 					++j;
