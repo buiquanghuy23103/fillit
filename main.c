@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/06 18:15:55 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/06 18:37:44 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 		ft_putstr("usage:\t./fillit target_file\n");
 		return (0);
 	}
-	ft_inil_tetr(storage, 3);
+	ft_inil_tetr(storage, 2);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_error();
