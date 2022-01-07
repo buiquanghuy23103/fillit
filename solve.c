@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/06 13:14:23 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 11:50:37 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 		{
 			ft_place_piece(solution, storage->tmino[i]);
 			storage->tmino[i][ISFIT] = 1;
+			//storage->tmino[i + 1][SROW] = storage->tmino[i][SROW];
 			++i;
 			continue ;
 		}

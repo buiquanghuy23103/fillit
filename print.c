@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/06 10:52:33 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/07 11:49:15 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_print_tetrimino(int *arr, char **p, int c)
 	int	i;
 	int	j;
 
-	i = 0;
+	i = arr[SROW];
 	j = arr[SIZE] - 1;
 	while (i < arr[SIZE])
 	{

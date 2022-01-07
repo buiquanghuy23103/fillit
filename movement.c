@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/05 15:47:18 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 11:50:22 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,6 @@
 
 void	ft_top(int *tetrimino)
 {
-	int	i;
-	int	h;
-	int	k;
-
-	i = tetrimino[SROW];
-	h = tetrimino[HEIGHT];
-	k = 0;
-	if (i == 0)
-		return ;
-	while (k < h)
-	{
-		ft_swap(&tetrimino[i + k], &tetrimino[k]);
-		k++;
-	}
 	tetrimino[SROW] = 0;
 }
 
