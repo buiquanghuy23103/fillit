@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 13:20:50 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 15:48:14 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,27 +20,25 @@ void	ft_top(int *tetrimino)
 void	ft_left(int *tetrimino)
 {
 	int	max;
-	int	i;
 	int	k;
 	int	longest;
 	int	shift;
 
 	max = ft_setbit(0, tetrimino[SIZE]);
-	i = tetrimino[SROW];
 	longest = 0;
 	k = 0;
 	shift = -1;
 	while (k < 4)
 	{
-		if (tetrimino[i + k] > longest)
-			longest = tetrimino[i + k];
+		if (tetrimino[k] > longest)
+			longest = tetrimino[k];
 		k++;
 	}
 	while (longest < max && ++shift > -1)
 		longest = longest << 1;
 	k = -1;
 	while (++k < 4 && shift > 0)
-		tetrimino[i + k] = tetrimino[i + k] << shift;
+		tetrimino[k] = tetrimino[k] << shift;
 }
 
 void	ft_topleft(int *tetrimino)
@@ -52,22 +50,20 @@ void	ft_topleft(int *tetrimino)
 int	ft_right(int *tetrimino)
 {
 	int	k;
-	int	i;
 
 	k = -1;
-	i = tetrimino[SROW];
 	while (++k < 4)
-		if (tetrimino[i + k] % 2 != 0)
+		if (tetrimino[k] % 2 != 0)
 			return (0);
 	k = -1;
 	while (++k < 4)
-		tetrimino[i + k] >>= 1;
+		tetrimino[k] >>= 1;
 	return (1);
 }
 
 int	ft_down(int *tetrimino)
 {
-	if (tetrimino[SROW] + tetrimino[HEIGHT] > tetrimino[SIZE])
+	if (tetrimino[SROW] + tetrimino[HEIGHT] >= tetrimino[SIZE])
 		return (0);
 	ft_left(tetrimino);
 	tetrimino[SROW]++;

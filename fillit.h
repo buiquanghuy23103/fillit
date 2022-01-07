@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 14:30:48 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 15:12:57 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,17 @@
 # include <fcntl.h>
 
 # define MAXTETRIMINOS 26
-# define ISFIT 19
-# define HEIGHT 18
-# define SIZE 17
-# define SROW 16
+# define T_SIZE 8
+# define INFO_SIZE 4
+# define VALID_SIZE 119
+# define ISFIT 7
+# define HEIGHT 6
+# define SIZE 5
+# define SROW 4
 
 typedef struct s_tetr
 {
-	int	tmino[26][20];
+	int	tmino[MAXTETRIMINOS][T_SIZE];
 	int	tcount;
 }	t_tetr;
 

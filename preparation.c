@@ -6,14 +6,14 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 15:01:06 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 15:14:55 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 #include <stdint.h>
 
-static const uint16_t	g_valid[119] =
+static const uint16_t	g_valid[VALID_SIZE] =
 				{0b1100100010000000, 0b0110010001000000, 0b0011001000100000,
 				0b0000110010001000, 0b0000011001000100, 0b0000001100100010,
 				0b1110001000000000, 0b0111000100000000, 0b0000111000100000,
@@ -62,16 +62,7 @@ static void	ft_set_srow(t_tetr *storage)
 
 	i = 0;
 	h = 0;
-	while (i < 16)
-	{
-		if (storage->tmino[storage->tcount][i] != 0)
-		{
-			storage->tmino[storage->tcount][SROW] = i;
-			break ;
-		}
-		++i;
-	}
-	while (i < 16 && storage->tmino[storage->tcount][i] != 0)
+	while (i < T_SIZE - INFO_SIZE && storage->tmino[storage->tcount][i] != 0)
 	{
 		h++;
 		i++;
@@ -83,12 +74,10 @@ void	ft_set_storage(t_tetr *storage, int *tmp)
 {
 	int			i;
 	uint16_t	value;
-	int			line_index;
 	int			srow;
 
 	value = 0;
 	i = 0;
-	line_index = 0;
 	srow = -1;
 	while (i < 16)
 	{
@@ -104,7 +93,7 @@ void	ft_set_storage(t_tetr *storage, int *tmp)
 	ft_left(storage->tmino[storage->tcount]);
 	ft_set_srow(storage);
 	i = 0;
-	while (i < 119)
+	while (i < VALID_SIZE)
 	{
 		if (value == g_valid[i])
 			return ;
