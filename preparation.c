@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/06 18:28:19 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/07 10:53:36 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,17 +58,25 @@ static const uint16_t	g_valid[119] =
 static void	ft_set_srow(t_tetr *storage)
 {
 	int	i;
+	int	h;
 
 	i = 0;
+	h = 0;
 	while (i < 16)
 	{
 		if (storage->tmino[storage->tcount][i] != 0)
 		{
 			storage->tmino[storage->tcount][SROW] = i;
-			return ;
+			break ;
 		}
 		++i;
 	}
+	while (i < 16 && storage->tmino[storage->tcount][i] != 0)
+	{
+		h++;
+		i++;
+	}
+	storage->tmino[storage->tcount][HEIGHT] = h;
 }
 
 static void	ft_set_storage(t_tetr *storage, int *tmp)
@@ -84,7 +92,6 @@ static void	ft_set_storage(t_tetr *storage, int *tmp)
 		{
 			value |= 1 << (15 - i);
 			storage->tmino[storage->tcount][i / 4] |= 1 << (3 - (i % 4));
-			storage->tmino[storage->tcount][HEIGHT]++;
 		}
 		++i;
 	}

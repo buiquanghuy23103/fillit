@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 00:28:10 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/05 00:38:21 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/07 10:54:27 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,15 @@
 int	ft_check_fit(int *dst, int *src)
 {
 	int	i;
+	int	square_size;
+	int	height;
 
 	i = src[SROW];
-	while (i < src[SIZE] && src[i] != 0)
+	square_size = src[SIZE];
+	height = src[HEIGHT];
+	if (height > square_size)
+		return (0);
+	while (i < square_size && src[i] != 0)
 	{
 		if (src[i] & dst[i])
 			return (0);
