@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 15:54:22 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 21:56:37 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,21 +21,14 @@ void	ft_error(void)
 void	ft_inil_tetr(t_tetr	*tetr, int size)
 {
 	int	i;
-	int	j;
 
 	i = 0;
-	j = 0;
 	while (i < MAXTETRIMINOS)
 	{
-		while (j < 17)
-		{
-			tetr->tmino[i][j] = 0;
-			++j;
-		}
+		ft_bzero(tetr->tmino[i], sizeof(int) * T_SIZE);
 		tetr->tmino[i][SIZE] = size;
 		tetr->tmino[i][HEIGHT] = 0;
 		tetr->tmino[i][ISFIT] = 0;
-		j = 0;
 		++i;
 	}
 	tetr->tcount = 0;
