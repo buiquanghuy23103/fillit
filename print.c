@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/07 11:49:15 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/07 22:18:58 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 void	ft_print_tetrimino(int *arr, char **p, int c)
 {
-	int	i;
 	int	j;
+	int	i;
 
-	i = arr[SROW];
-	j = arr[SIZE] - 1;
-	while (i < arr[SIZE])
+	i = 0;
+	while (i < arr[HEIGHT])
 	{
-		while (j >= 0)
+		j = arr[SIZE] - 1;
+		while (j >= 0 && arr[i] > 0)
 		{
 			if (ft_getbit(arr[i], j))
-				p[i][arr[SIZE] - 1 - j] = c;
+			{
+				p[arr[SROW] + i][arr[SIZE] - 1 - j] = c;
+			}
 			--j;
 		}
-		j = arr[SIZE] - 1;
 		++i;
 	}
 }
