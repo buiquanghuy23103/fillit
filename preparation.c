@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 14:54:42 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 15:01:06 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,7 @@ void	ft_set_storage(t_tetr *storage, int *tmp)
 		}
 		++i;
 	}
+	ft_left(storage->tmino[storage->tcount]);
 	ft_set_srow(storage);
 	i = 0;
 	while (i < 119)
