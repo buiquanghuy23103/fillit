@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 10:53:36 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/07 14:54:42 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,19 +79,25 @@ static void	ft_set_srow(t_tetr *storage)
 	storage->tmino[storage->tcount][HEIGHT] = h;
 }
 
-static void	ft_set_storage(t_tetr *storage, int *tmp)
+void	ft_set_storage(t_tetr *storage, int *tmp)
 {
 	int			i;
 	uint16_t	value;
+	int			line_index;
+	int			srow;
 
 	value = 0;
 	i = 0;
+	line_index = 0;
+	srow = -1;
 	while (i < 16)
 	{
 		if (tmp[i])
 		{
 			value |= 1 << (15 - i);
-			storage->tmino[storage->tcount][i / 4] |= 1 << (3 - (i % 4));
+			if (srow == -1)
+				srow = i / 4;
+			storage->tmino[storage->tcount][i / 4 - srow] |= 1 << (3 - (i % 4));
 		}
 		++i;
 	}

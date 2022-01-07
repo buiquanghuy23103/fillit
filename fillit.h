@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/06 12:35:46 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/07 14:30:48 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,5 +43,6 @@ void	ft_remove_piece(int *dst, int *src);
 void	ft_solve(int *solution, t_tetr *storage);
 void	ft_place_piece(int *dst, int *src);
 void	ft_set_minsize(t_tetr *storage);
+void	ft_set_storage(t_tetr *storage, int *tmp);
 
 #endif
