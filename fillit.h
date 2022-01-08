@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/08 18:22:47 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 19:54:17 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_topleft_scol(int *tetrimino);
 void	ft_top(int tetrimino[]);
 void	ft_left(int *tetrimino);
 int		ft_right(int *tetrimino);
-int		ft_down(int *tetrimino);
+int		ft_down(int *solution, int *tetrimino);
 void	ft_error(void);
 void	ft_inil_tetr(t_tetr	*tetr, int size);
 char	**ft_inil_array(t_tetr *t);
