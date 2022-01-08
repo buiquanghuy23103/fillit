@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/08 03:29:21 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 14:29:54 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 	i = 0;
 	while (i < storage->tcount)
 	{
+//		ft_print_tetriminos(storage, i + 1);ft_putchar('\n');
 		if (ft_check_fit(solution + storage->tmino[i][SROW], storage->tmino[i]))
 		{
 			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i]);
