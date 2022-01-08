@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/08 02:31:52 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 13:58:27 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,13 @@ void	ft_remove_piece(int *dst, int *src)
 
 void	ft_place_piece(int *dst, int *src)
 {
+	int	col;
+
+	col = src[SCOL];
 	while (*src)
-		*dst++ |= *src++;
+	{
+		*dst |= (*src >> col);
+		src++;
+		dst++;
+	}
 }
