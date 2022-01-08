@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/08 02:31:46 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 18:50:26 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,10 +95,14 @@ void	ft_set_minsize(t_tetr *storage)
 {
 	int	i;
 	int	j;
+	int	*tetr0;
 
-	i = storage->tmino[0][SIZE] + 1;
+	tetr0 = storage->tmino[0];
+	i = tetr0[SIZE] + 1;
 	j = 0;
-	while (storage->tcount * 4 > i * i)
+	while (storage->tcount * 4 > i * i
+			|| i < tetr0[HEIGHT] 
+			|| i < tetr0[WIDTH])
 	{
 		++i;
 	}
