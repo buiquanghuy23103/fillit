@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 15:12:57 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/08 03:30:37 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,14 @@
 # include <fcntl.h>
 
 # define MAXTETRIMINOS 26
-# define T_SIZE 8
-# define INFO_SIZE 4
-# define VALID_SIZE 119
-# define ISFIT 7
-# define HEIGHT 6
-# define SIZE 5
-# define SROW 4
+# define T_SIZE 10
+# define INFO_SIZE 6
+# define VALID_SIZE 19
+# define SCOL 9
+# define HEIGHT 8
+# define SIZE 7
+# define SROW 6
+# define WIDTH 5
 
 typedef struct s_tetr
 {
@@ -32,6 +33,8 @@ typedef struct s_tetr
 }	t_tetr;
 
 void	ft_topleft(int *tetrimino);
+void	ft_topleft_incr(int *tetrimino);
+void	ft_topleft_scol(int *tetrimino);
 void	ft_top(int tetrimino[]);
 void	ft_left(int *tetrimino);
 int		ft_right(int *tetrimino);

@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/06 18:37:44 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 03:29:33 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,23 @@ int	main(int argc, char **argv)
 	ft_validate(fd, storage);
 	while (i < storage->tcount)
 	{
+
 		ft_topleft(storage->tmino[i]);
 		++i;
 	}
 	ft_solve(solution, storage);
 	ft_print_tetriminos(storage, storage->tcount);
+	/*ft_putstr("SIZE ");
+	ft_putnbr(storage->tmino[0][SIZE]);
+	ft_putchar('\n');
+	ft_putstr("SROW ");
+	ft_putnbr(storage->tmino[0][SROW]);
+	ft_putchar('\n');
+	ft_putstr("HEIGHT ");
+	ft_putnbr(storage->tmino[0][HEIGHT]);
+	ft_putchar('\n');
+	ft_putstr("WIDTH ");
+	ft_putnbr(storage->tmino[0][WIDTH]);
+	ft_putchar('\n');*/
 	return (0);
 }

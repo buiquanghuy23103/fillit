@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 21:56:37 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/08 02:31:52 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,19 @@ void	ft_error(void)
 void	ft_inil_tetr(t_tetr	*tetr, int size)
 {
 	int	i;
+	int	j;
 
 	i = 0;
+	j = 0;
 	while (i < MAXTETRIMINOS)
 	{
-		ft_bzero(tetr->tmino[i], sizeof(int) * T_SIZE);
+		while (j < T_SIZE)
+		{
+			tetr->tmino[i][j] = 0;
+			++j;
+		}
 		tetr->tmino[i][SIZE] = size;
-		tetr->tmino[i][HEIGHT] = 0;
-		tetr->tmino[i][ISFIT] = 0;
+		j = 0;
 		++i;
 	}
 	tetr->tcount = 0;
@@ -49,9 +54,7 @@ char	**ft_inil_array(t_tetr *t)
 		if (!p[i])
 		{
 			while (i-- > 0)
-			{
 				free(p[i]);
-			}
 			ft_error();
 		}
 		ft_memset(p[i], '.', t->tmino[0][SIZE]);
@@ -62,28 +65,12 @@ char	**ft_inil_array(t_tetr *t)
 
 void	ft_remove_piece(int *dst, int *src)
 {
-	int	i;
-	int	srow;
-
-	i = 0;
-	srow = src[SROW];
-	while (i < 4 && src[i])
-	{
-		dst[srow + i] ^= src[i];
-		++i;
-	}
+	while (*src)
+		*dst++ ^= *src++;
 }
 
 void	ft_place_piece(int *dst, int *src)
 {
-	int	i;
-	int	srow;
-
-	i = 0;
-	srow = src[SROW];
-	while (i < 4 && src[i])
-	{
-		dst[srow + i] |= src[i];
-		++i;
-	}
+	while (*src)
+		*dst++ |= *src++;
 }

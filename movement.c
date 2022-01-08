@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/07 15:48:14 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/08 03:03:57 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,25 @@
 void	ft_top(int *tetrimino)
 {
 	tetrimino[SROW] = 0;
+}
+void	ft_left_incr(int *tetrimino)
+{
+	int k;
+
+	k = -1;
+	while (++k < 4)
+		tetrimino[k] <<=  (tetrimino[SCOL] + 1);
+	tetrimino[SCOL] = 0;
+}
+
+void	ft_left_scol(int *tetrimino)
+{
+	int k;
+
+	k = -1;
+	while (++k < 4)
+		tetrimino[k] <<= tetrimino[SCOL];
+	tetrimino[SCOL] = 0;
 }
 
 void	ft_left(int *tetrimino)
@@ -39,6 +58,21 @@ void	ft_left(int *tetrimino)
 	k = -1;
 	while (++k < 4 && shift > 0)
 		tetrimino[k] = tetrimino[k] << shift;
+	tetrimino[SCOL] = 0;
+}
+
+void	ft_topleft_incr(int *tetrimino)
+{
+	ft_top(tetrimino);
+	ft_left_incr(tetrimino);
+	//ft_left(tetrimino);
+}
+
+void	ft_topleft_scol(int *tetrimino)
+{
+	ft_top(tetrimino);
+	//ft_left(tetrimino);
+	ft_left_scol(tetrimino);
 }
 
 void	ft_topleft(int *tetrimino)
@@ -49,15 +83,11 @@ void	ft_topleft(int *tetrimino)
 
 int	ft_right(int *tetrimino)
 {
-	int	k;
-
-	k = -1;
-	while (++k < 4)
-		if (tetrimino[k] % 2 != 0)
+	if (tetrimino[SCOL] + tetrimino[WIDTH] == tetrimino[SIZE])
 			return (0);
-	k = -1;
-	while (++k < 4)
-		tetrimino[k] >>= 1;
+	tetrimino[SCOL]++;
+	while (*tetrimino)
+		*tetrimino++ >>= 1;
 	return (1);
 }
 

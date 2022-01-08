@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/07 11:50:37 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 03:29:21 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,49 +15,32 @@
 void	ft_solve(int *solution, t_tetr *storage)
 {
 	int i;
-	int	j;
 
 	i = 0;
-	j = 0;
-	while (!storage->tmino[storage->tcount - 1][ISFIT])
+	while (i < storage->tcount)
 	{
-		if (ft_check_fit(solution, storage->tmino[i]))
+		if (ft_check_fit(solution + storage->tmino[i][SROW], storage->tmino[i]))
 		{
-			ft_place_piece(solution, storage->tmino[i]);
-			storage->tmino[i][ISFIT] = 1;
-			//storage->tmino[i + 1][SROW] = storage->tmino[i][SROW];
+			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i]);
 			++i;
 			continue ;
 		}
 		while ((!ft_right(storage->tmino[i]) && !ft_down(storage->tmino[i])))
 		{
-			if (storage->tmino[i][ISFIT])
-				storage->tmino[i][ISFIT] = 0;
 			if (i == 0)
 			{
-				ft_topleft(storage->tmino[i]);
 				ft_set_minsize(storage);
-				while (j < storage->tcount)
-				{
-					ft_topleft(storage->tmino[j]);
-					++j;
-				}
-				j = 0;
+				while (i < storage->tcount)
+					ft_topleft_incr(storage->tmino[i++]);
+				i = 0;
 				break ;
 			}
 			else
 			{
-				ft_topleft(storage->tmino[i]);
-				ft_remove_piece(solution, storage->tmino[i - 1]);
-				i--;
+				ft_topleft_scol(storage->tmino[i]);
+				ft_remove_piece(solution + storage->tmino[i - 1][SROW], storage->tmino[i - 1]);
+				--i;
 			}
 		}
 	}
-	/*if (!ft_check_fit(solution, storage->tmino[0]))
-		ft_putstr("CHECKFIT WORKS");
-	ft_remove_piece(solution, storage->tmino[0]);
-	if (ft_check_fit(solution, storage->tmino[0]))
-		ft_putstr("REMOVAL WORKS");
-	ft_putchar('\n');
-	ft_print_tetriminos(storage, 1);*/
 }
