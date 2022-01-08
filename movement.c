@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/08 12:02:49 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/08 18:31:17 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,20 +15,23 @@
 void	ft_top(int *tetrimino)
 {
 	tetrimino[SROW] = 0;
+	tetrimino[EROW] = tetrimino[HEIGHT];
 }
 void	ft_left_incr(int *tetrimino)
 {
-	int k;
-
-	k = -1;
-	while (++k < 4)
-		tetrimino[k] <<=  (tetrimino[SCOL] + 1);
-	tetrimino[SCOL] = 0;
+	while (*tetrimino)
+		*tetrimino++ <<= 1;
 }
 
 void	ft_left_scol(int *tetrimino)
 {
+	int k;
+
+	k = tetrimino[SCOL];
 	tetrimino[SCOL] = 0;
+	tetrimino[ECOL] = tetrimino[WIDTH];
+	while (*tetrimino)
+		*tetrimino++ <<= k;
 }
 
 void	ft_left(int *tetrimino)
@@ -54,6 +57,7 @@ void	ft_left(int *tetrimino)
 	while (++k < 4 && shift > 0)
 		tetrimino[k] = tetrimino[k] << shift;
 	tetrimino[SCOL] = 0;
+	tetrimino[ECOL] = tetrimino[WIDTH];
 }
 
 void	ft_topleft_incr(int *tetrimino)
@@ -78,17 +82,21 @@ void	ft_topleft(int *tetrimino)
 
 int	ft_right(int *tetrimino)
 {
-	if (tetrimino[SCOL] + tetrimino[WIDTH] == tetrimino[SIZE])
-			return (0);
-	tetrimino[SCOL]++;
+	if (tetrimino[ECOL] == tetrimino[SIZE])
+		return (0);
+	++tetrimino[SCOL];
+	++tetrimino[ECOL];
+	while (*tetrimino)
+		*tetrimino++ >>= 1;
 	return (1);
 }
 
 int	ft_down(int *tetrimino)
 {
-	if (tetrimino[SROW] + tetrimino[HEIGHT] >= tetrimino[SIZE])
+	if (!(tetrimino[EROW] ^ tetrimino[SIZE]))
 		return (0);
 	ft_left_scol(tetrimino);
-	tetrimino[SROW]++;
+	++tetrimino[SROW];
+	++tetrimino[EROW];
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/08 14:29:54 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/08 18:23:56 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 		{
 			if (i == 0)
 			{
+				ft_topleft_scol(storage->tmino[i]);
 				ft_set_minsize(storage);
 				while (i < storage->tcount)
 					ft_topleft_incr(storage->tmino[i++]);

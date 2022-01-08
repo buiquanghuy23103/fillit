@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/08 03:30:37 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 18:22:47 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,11 @@
 # include <fcntl.h>
 
 # define MAXTETRIMINOS 26
-# define T_SIZE 10
+# define T_SIZE 12
 # define INFO_SIZE 6
 # define VALID_SIZE 19
+# define EROW 11
+# define ECOL 10
 # define SCOL 9
 # define HEIGHT 8
 # define SIZE 7
