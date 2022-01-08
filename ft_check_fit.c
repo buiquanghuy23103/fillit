@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 00:28:10 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/08 02:49:19 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 12:05:03 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,11 @@
 int	ft_check_fit(int *dst, int *src)
 {
 	while (*src)
-		if (*src++ & *dst++)
+	{
+		if (*src & (*dst >> (*dst)[SCOL]))
 			return (0);
+		src++;
+		dst++;
+	}
 	return (1);
 }

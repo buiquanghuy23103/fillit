@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/08 03:03:57 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/08 12:02:49 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,6 @@ void	ft_left_incr(int *tetrimino)
 
 void	ft_left_scol(int *tetrimino)
 {
-	int k;
-
-	k = -1;
-	while (++k < 4)
-		tetrimino[k] <<= tetrimino[SCOL];
 	tetrimino[SCOL] = 0;
 }
 
@@ -86,8 +81,6 @@ int	ft_right(int *tetrimino)
 	if (tetrimino[SCOL] + tetrimino[WIDTH] == tetrimino[SIZE])
 			return (0);
 	tetrimino[SCOL]++;
-	while (*tetrimino)
-		*tetrimino++ >>= 1;
 	return (1);
 }
 
@@ -95,7 +88,7 @@ int	ft_down(int *tetrimino)
 {
 	if (tetrimino[SROW] + tetrimino[HEIGHT] >= tetrimino[SIZE])
 		return (0);
-	ft_left(tetrimino);
+	ft_left_scol(tetrimino);
 	tetrimino[SROW]++;
 	return (1);
 }
