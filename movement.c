@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 17:30:51 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 18:06:22 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,11 +16,6 @@ void	ft_top(int *tetrimino)
 {
 	tetrimino[SROW] = 0;
 	tetrimino[EROW] = tetrimino[HEIGHT];
-}
-void	ft_left_incr(int *tetrimino)
-{
-	while (*tetrimino)
-		*tetrimino++ <<= 1;
 }
 
 void	ft_left_scol(int *tetrimino)
@@ -49,20 +44,13 @@ void	ft_left(int *tetrimino)
 			longest = tetrimino[k];
 		k++;
 	}
-	while (longest < max && ++shift > -1)
-		longest = longest << 1;
+	while (!(longest % 2) && ++shift > -1)
+		longest = longest >> 1;
 	k = -1;
 	while (++k < 4 && shift > 0)
-		tetrimino[k] = tetrimino[k] << shift;
+		tetrimino[k] = tetrimino[k] >> shift;
 	tetrimino[SCOL] = 0;
 	tetrimino[ECOL] = tetrimino[WIDTH];
-}
-
-void	ft_topleft_incr(int *tetrimino)
-{
-	ft_top(tetrimino);
-	ft_left_incr(tetrimino);
-	//ft_left(tetrimino);
 }
 
 void	ft_topleft_scol(int *tetrimino)
