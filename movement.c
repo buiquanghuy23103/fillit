@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/08 20:30:04 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 10:59:06 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,16 +91,13 @@ int	ft_right(int *tetrimino)
 	return (1);
 }
 
-int	ft_down(int *solution, int *tetrimino)
+int	ft_down(int *solution, int *tetrimino, int full)
 {
-	int	full;
-
 	if (!(tetrimino[EROW] ^ tetrimino[SIZE]))
 		return (0);
 	ft_left_scol(tetrimino);
 	tetrimino[SROW]++;
 	tetrimino[EROW]++;
-	full = ft_setbit(0, tetrimino[SIZE]) - 1;
 	while (!(solution[tetrimino[SROW]] ^ full)
 			&& tetrimino[EROW] ^ tetrimino[SIZE])
 	{

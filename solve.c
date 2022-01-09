@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/08 19:51:02 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 10:31:41 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 void	ft_solve(int *solution, t_tetr *storage)
 {
 	int i;
+	int	full;
 
 	i = 0;
+	full = ft_setbit(0, storage->tmino[0][SIZE]) - 1;
 	while (i < storage->tcount)
 	{
 //		ft_print_tetriminos(storage, i + 1);ft_putchar('\n');
@@ -26,12 +28,13 @@ void	ft_solve(int *solution, t_tetr *storage)
 			++i;
 			continue ;
 		}
-		while ((!ft_right(storage->tmino[i]) && !ft_down(solution, storage->tmino[i])))
+		while ((!ft_right(storage->tmino[i]) && !ft_down(solution, storage->tmino[i], full)))
 		{
 			if (i == 0)
 			{
 				ft_topleft_scol(storage->tmino[i]);
 				ft_set_minsize(storage);
+				full = (full << 1) + 1;
 				while (i < storage->tcount)
 					ft_topleft_incr(storage->tmino[i++]);
 				i = 0;
