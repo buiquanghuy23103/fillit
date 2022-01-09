@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 10:59:06 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 16:08:21 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,15 +91,15 @@ int	ft_right(int *tetrimino)
 	return (1);
 }
 
-int	ft_down(int *solution, int *tetrimino, int full)
+int	ft_down(int *solution, int *tetrimino, int *offbits, int full)
 {
 	if (!(tetrimino[EROW] ^ tetrimino[SIZE]))
 		return (0);
 	ft_left_scol(tetrimino);
 	tetrimino[SROW]++;
 	tetrimino[EROW]++;
-	while (!(solution[tetrimino[SROW]] ^ full)
-			&& tetrimino[EROW] ^ tetrimino[SIZE])
+	while ((!(solution[tetrimino[SROW]] ^ full) || offbits[tetrimino[SROW]] < tetrimino[BITS0])
+	&& (tetrimino[EROW] ^ tetrimino[SIZE]))
 	{
 		++tetrimino[SROW];
 		++tetrimino[EROW];
