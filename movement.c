@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 19:52:53 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/09 20:28:17 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	ft_topleft(int *tetrimino)
 	ft_left(tetrimino);
 }
 
-int	ft_right(int *tetrimino, int *offbits)
+int	ft_right(int *tetrimino)
 {
-	if (tetrimino[ECOL] == tetrimino[SIZE] || offbits[tetrimino[SROW]] < tetrimino[BITS0])
+	if (tetrimino[ECOL] == tetrimino[SIZE])
 		return (0);
 	++tetrimino[SCOL];
 	++tetrimino[ECOL];
