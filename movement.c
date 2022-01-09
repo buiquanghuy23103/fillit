@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 18:06:22 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 21:34:05 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,37 +20,42 @@ void	ft_top(int *tetrimino)
 
 void	ft_left_scol(int *tetrimino)
 {
-	int k;
-
-	k = tetrimino[SCOL];
 	tetrimino[SCOL] = 0;
 	tetrimino[ECOL] = tetrimino[WIDTH];
 }
-
+int countTrailingZero(int x)
+{
+	int count;
+	
+	count = 0;
+	while ((x & 1) == 0)
+	{
+		x = x >> 1;
+		count++;
+	}
+	return count;
+}
 void	ft_left(int *tetrimino)
 {
-	int	max;
-	int	k;
-	int	longest;
+	int	i;
 	int	shift;
+	int	trail_zero;
 
-	max = ft_setbit(0, tetrimino[SIZE]);
-	longest = 0;
-	k = 0;
-	shift = -1;
-	while (k < 4)
+	ft_left_scol(tetrimino);
+	i = -1;
+	shift = 5;
+	trail_zero = 0;
+	while (tetrimino[++i])
 	{
-		if (tetrimino[k] > longest)
-			longest = tetrimino[k];
-		k++;
+		trail_zero = countTrailingZero(tetrimino[i]);
+		if (shift > trail_zero)
+			shift = trail_zero;
 	}
-	while (!(longest % 2) && ++shift > -1)
-		longest = longest >> 1;
-	k = -1;
-	while (++k < 4 && shift > 0)
-		tetrimino[k] = tetrimino[k] >> shift;
-	tetrimino[SCOL] = 0;
-	tetrimino[ECOL] = tetrimino[WIDTH];
+	i = -1;
+	if (!shift)
+		return ;
+	while (tetrimino[++i])
+		tetrimino[i] >>= shift;
 }
 
 void	ft_topleft_scol(int *tetrimino)
