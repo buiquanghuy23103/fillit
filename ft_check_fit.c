@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_check_fit.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 00:28:10 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/08 18:33:26 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:47:27 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,15 @@
 
 int	ft_check_fit(int *dst, int *src)
 {
+	int	scol;
+
+	scol = src[SCOL];
 	while (*src)
-		if (*src++ & *dst++)
+	{
+		if ((*src >> scol) & *dst)
 			return (0);
+		src++;
+		dst++;
+	}
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 16:08:21 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/09 17:30:51 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,6 @@ void	ft_left_scol(int *tetrimino)
 	k = tetrimino[SCOL];
 	tetrimino[SCOL] = 0;
 	tetrimino[ECOL] = tetrimino[WIDTH];
-	while (*tetrimino)
-		*tetrimino++ <<= k;
 }
 
 void	ft_left(int *tetrimino)
@@ -86,8 +84,6 @@ int	ft_right(int *tetrimino)
 		return (0);
 	++tetrimino[SCOL];
 	++tetrimino[ECOL];
-	while (*tetrimino)
-		*tetrimino++ >>= 1;
 	return (1);
 }
 
