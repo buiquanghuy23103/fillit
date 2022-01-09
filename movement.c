@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 17:30:51 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 19:52:53 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,9 @@ void	ft_topleft(int *tetrimino)
 	ft_left(tetrimino);
 }
 
-int	ft_right(int *tetrimino)
+int	ft_right(int *tetrimino, int *offbits)
 {
-	if (tetrimino[ECOL] == tetrimino[SIZE])
+	if (tetrimino[ECOL] == tetrimino[SIZE] || offbits[tetrimino[SROW]] < tetrimino[BITS0])
 		return (0);
 	++tetrimino[SCOL];
 	++tetrimino[ECOL];

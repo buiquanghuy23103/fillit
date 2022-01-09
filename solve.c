@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/09 17:47:31 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 19:56:59 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 			++i;
 			continue ;
 		}
-		while ((!ft_right(storage->tmino[i]) && !ft_down(solution, storage->tmino[i], offbits, full)))
+		while ((!ft_right(storage->tmino[i], offbits) && !ft_down(solution, storage->tmino[i], offbits, full)))
 		{
 			if (i == 0)
 			{
