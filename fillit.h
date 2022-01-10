@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   fillit.h                                           :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 20:28:22 by jpikkuma         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef FILLIT_H
 # define FILLIT_H
 
@@ -17,9 +5,11 @@
 # include <fcntl.h>
 
 # define MAXTETRIMINOS 26
-# define T_SIZE 16
+# define T_SIZE 18
 # define INFO_SIZE 6
 # define VALID_SIZE 19
+# define MAXBIND 17
+# define MAXBITS 16
 # define BITS3 15
 # define BITS2 14
 # define BITS1 13
@@ -45,12 +35,14 @@ void	ft_top(int tetrimino[]);
 void	ft_left(int *tetrimino);
 int		ft_right(int *tetrimino);
 int		ft_down(int *solution, int *tetrimino, int *offbits, int full);
+int		ft_move(int *solution, int *tetrimino, int *offbits, int full);
 void	ft_error(void);
 void	ft_inil_tetr(t_tetr	*tetr, int size);
 char	**ft_inil_array(t_tetr *t);
 void	ft_print_tetriminos(t_tetr *t, int index);
 void	ft_validate(int fd, t_tetr *storage);
 int		ft_check_fit(int *dst, int *src);
+int		ft_check_fit_tmp(int *dst, int *src, int *offbits, int full);
 void	ft_remove_piece(int *dst, int *src);
 void	ft_solve(int *solution, t_tetr *storage);
 void	ft_place_piece(int *dst, int *src);

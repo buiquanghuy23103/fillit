@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/09 20:28:29 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/10 17:15:35 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	ft_solve(int *solution, t_tetr *storage)
 {
 	int	i;
-	int	offbits[16];
+	int	offbits[17];
 	int	full;
 
 	i = 0;
@@ -29,7 +29,9 @@ void	ft_solve(int *solution, t_tetr *storage)
 	i = 0;
 	while (i < storage->tcount)
 	{
-				// ft_print_tetriminos(storage, i + 1);ft_putchar('\n');
+		//ft_print_tetriminos(storage, i + 1);
+		//ft_putchar('\n');
+		//if (ft_check_fit_tmp(solution, storage->tmino[i], offbits, full))
 		if (ft_check_fit(solution + storage->tmino[i][SROW], storage->tmino[i]))
 		{
 			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i]);
@@ -40,7 +42,9 @@ void	ft_solve(int *solution, t_tetr *storage)
 			++i;
 			continue ;
 		}
-		while ((!ft_right(storage->tmino[i]) && !ft_down(solution, storage->tmino[i], offbits, full)))
+		while (!ft_move(solution, storage->tmino[i], offbits, full))
+		//while (!ft_movetest(storage->tmino[i]))
+		//else
 		{
 			if (i == 0)
 			{
