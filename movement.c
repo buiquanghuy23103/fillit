@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 19:52:53 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/10 10:24:10 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,12 +78,24 @@ void	ft_topleft(int *tetrimino)
 	ft_left(tetrimino);
 }
 
-int	ft_right(int *tetrimino, int *offbits)
+int	ft_right(int *tetrimino, int *offbits, int full, int *solution)
 {
-	if (tetrimino[ECOL] == tetrimino[SIZE] || offbits[tetrimino[SROW]] < tetrimino[BITS0])
+	int	mask;
+	int	size;
+
+	size = tetrimino[SIZE];
+	if (tetrimino[ECOL] == size || offbits[tetrimino[SROW]] < tetrimino[BITS0])
 		return (0);
 	++tetrimino[SCOL];
 	++tetrimino[ECOL];
+	mask = full ^ (solution[tetrimino[SROW]]);
+	while (!ft_getbit(mask, size - tetrimino[SCOL] - 1))
+	{
+		if (tetrimino[ECOL] == size)
+			break ;
+		++tetrimino[SCOL];
+		++tetrimino[ECOL];
+	}
 	return (1);
 }
 
