@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 21:59:09 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/10 13:25:31 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,10 @@
 # include <fcntl.h>
 
 # define MAXTETRIMINOS 26
-# define T_SIZE 16
+# define T_SIZE 17
 # define INFO_SIZE 6
 # define VALID_SIZE 19
+# define OFFSET 16
 # define BITS3 15
 # define BITS2 14
 # define BITS1 13

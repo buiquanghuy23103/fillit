@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/10 10:24:10 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/10 14:15:20 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	ft_right(int *tetrimino, int *offbits, int full, int *solution)
 	++tetrimino[SCOL];
 	++tetrimino[ECOL];
 	mask = full ^ (solution[tetrimino[SROW]]);
-	while (!ft_getbit(mask, size - tetrimino[SCOL] - 1))
+	while (!ft_getbit(mask, size - (tetrimino[SCOL] + tetrimino[OFFSET]) - 1))
 	{
 		if (tetrimino[ECOL] == size)
 			break ;
