@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/10 17:17:26 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:59:47 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	ft_set_storage(t_tetr *storage, int *tmp)
 			value |= 1 << (15 - i);
 			if (srow == -1)
 				srow = i / 4;
-			storage->tmino[storage->tcount][i / 4 - srow] |= 1 << (3 - (i % 4));
+			storage->tmino[storage->tcount][i / 4 - srow] |= 1 << (i % 4);
 		}
 		++i;
 	}
@@ -79,7 +79,6 @@ void	ft_set_storage(t_tetr *storage, int *tmp)
 		}
 		++i;
 	}
-	ft_topleft(storage->tmino[storage->tcount]);
 	ft_error();
 }
 

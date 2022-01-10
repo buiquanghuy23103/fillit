@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/10 17:15:35 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/10 19:59:35 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,9 +29,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 	i = 0;
 	while (i < storage->tcount)
 	{
-		//ft_print_tetriminos(storage, i + 1);
-		//ft_putchar('\n');
-		//if (ft_check_fit_tmp(solution, storage->tmino[i], offbits, full))
+		// ft_print_tetriminos(storage, i + 1);ft_putchar('\n');
 		if (ft_check_fit(solution + storage->tmino[i][SROW], storage->tmino[i]))
 		{
 			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i]);
@@ -58,7 +56,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 				}
 				i = 0;
 				while (i < storage->tcount)
-					ft_topleft_incr(storage->tmino[i++]);
+					ft_top(storage->tmino[i++]);
 				i = 0;
 				break ;
 			}

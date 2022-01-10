@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 17:44:09 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/09 18:08:26 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_remove_piece(int *dst, int *src)
 	scol = src[SCOL];
 	while (*src)
 	{
-		*dst ^= (*src >> scol);
+		*dst ^= (*src << scol);
 		dst++;
 		src++;
 	}
@@ -83,7 +83,7 @@ void	ft_place_piece(int *dst, int *src)
 	scol = src[SCOL];
 	while (*src)
 	{
-		*dst |= (*src >> scol);
+		*dst |= (*src << scol);
 		dst++;
 		src++;
 	}

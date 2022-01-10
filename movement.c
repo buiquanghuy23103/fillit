@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/10 17:14:57 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/10 20:00:00 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,52 +17,45 @@ void	ft_top(int *tetrimino)
 	tetrimino[SROW] = 0;
 	tetrimino[EROW] = tetrimino[HEIGHT];
 }
-void	ft_left_incr(int *tetrimino)
-{
-	while (*tetrimino)
-		*tetrimino++ <<= 1;
-}
 
 void	ft_left_scol(int *tetrimino)
 {
-	int k;
-
-	k = tetrimino[SCOL];
 	tetrimino[SCOL] = 0;
 	tetrimino[ECOL] = tetrimino[WIDTH];
 }
-
+int countTrailingZero(int x)
+{
+	int count;
+	
+	count = 0;
+	while ((x & 1) == 0)
+	{
+		x = x >> 1;
+		count++;
+	}
+	return count;
+}
 void	ft_left(int *tetrimino)
 {
-	int	max;
-	int	k;
-	int	longest;
+	int	i;
 	int	shift;
+	int	trail_zero;
 
-	max = ft_setbit(0, tetrimino[SIZE]);
-	longest = 0;
-	k = 0;
-	shift = -1;
-	while (k < 4)
+	ft_left_scol(tetrimino);
+	i = -1;
+	shift = 5;
+	trail_zero = 0;
+	while (tetrimino[++i])
 	{
-		if (tetrimino[k] > longest)
-			longest = tetrimino[k];
-		k++;
+		trail_zero = countTrailingZero(tetrimino[i]);
+		if (shift > trail_zero)
+			shift = trail_zero;
 	}
-	while (longest < max && ++shift > -1)
-		longest = longest << 1;
-	k = -1;
-	while (++k < 4 && shift > 0)
-		tetrimino[k] = tetrimino[k] << shift;
-	tetrimino[SCOL] = 0;
-	tetrimino[ECOL] = tetrimino[WIDTH];
-}
-
-void	ft_topleft_incr(int *tetrimino)
-{
-	ft_top(tetrimino);
-	ft_left_incr(tetrimino);
-	//ft_left(tetrimino);
+	i = -1;
+	if (!shift)
+		return ;
+	while (tetrimino[++i])
+		tetrimino[i] >>= shift;
 }
 
 void	ft_topleft_scol(int *tetrimino)
