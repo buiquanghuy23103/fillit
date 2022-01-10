@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/10 13:25:31 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 00:49:56 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,11 @@
 # include <fcntl.h>
 
 # define MAXTETRIMINOS 26
-# define T_SIZE 17
+# define T_SIZE 18
 # define INFO_SIZE 6
 # define VALID_SIZE 19
-# define OFFSET 16
+# define MAXBIND 17
+# define MAXBITS 16
 # define BITS3 15
 # define BITS2 14
 # define BITS1 13
@@ -46,6 +47,7 @@ void	ft_top(int tetrimino[]);
 void	ft_left(int *tetrimino);
 int		ft_right(int *tetrimino, int *offbits, int full, int *solution);
 int		ft_down(int *solution, int *tetrimino, int *offbits, int full);
+int		ft_move(int *tetrimino, int *offbits, int full, int *solution);
 void	ft_error(void);
 void	ft_inil_tetr(t_tetr	*tetr, int size);
 char	**ft_inil_array(t_tetr *t);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/10 14:15:20 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 01:34:00 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,23 +78,60 @@ void	ft_topleft(int *tetrimino)
 	ft_left(tetrimino);
 }
 
+int	ft_move(int *tetrimino, int *offbits, int full, int *solution)
+{
+	int row;
+
+	row = tetrimino[MAXBIND];
+	if (tetrimino[ECOL] == tetrimino[SIZE]
+	|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
+	{
+		if (!(tetrimino[EROW] ^ tetrimino[SIZE]))
+			return (0);
+		ft_left_scol(tetrimino);
+		tetrimino[SROW]++;
+		tetrimino[EROW]++;
+		while ((!(solution[tetrimino[SROW]] ^ full)
+		|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
+		&& (tetrimino[EROW] ^ tetrimino[SIZE]))
+		{
+			++tetrimino[SROW];
+			++tetrimino[EROW];
+		}
+		return (1);
+	}
+	++tetrimino[SCOL];
+	++tetrimino[ECOL];
+	while (!(solution[tetrimino[SROW]] ^ row))
+	{
+		if (tetrimino[ECOL] == tetrimino[SIZE])
+			break ;
+		++tetrimino[SCOL];
+		++tetrimino[ECOL];
+		row >>= 1;
+	}
+	return (1);
+}
+
 int	ft_right(int *tetrimino, int *offbits, int full, int *solution)
 {
-	int	mask;
 	int	size;
+	(void)full;
+	int row;
 
+	row = tetrimino[MAXBIND];
 	size = tetrimino[SIZE];
-	if (tetrimino[ECOL] == size || offbits[tetrimino[SROW]] < tetrimino[BITS0])
+	if (tetrimino[ECOL] == size || offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
 		return (0);
 	++tetrimino[SCOL];
 	++tetrimino[ECOL];
-	mask = full ^ (solution[tetrimino[SROW]]);
-	while (!ft_getbit(mask, size - (tetrimino[SCOL] + tetrimino[OFFSET]) - 1))
+	while (!(solution[tetrimino[SROW] + tetrimino[MAXBIND]] ^ row))
 	{
 		if (tetrimino[ECOL] == size)
 			break ;
 		++tetrimino[SCOL];
 		++tetrimino[ECOL];
+		row >>= 1;
 	}
 	return (1);
 }
@@ -103,10 +140,11 @@ int	ft_down(int *solution, int *tetrimino, int *offbits, int full)
 {
 	if (!(tetrimino[EROW] ^ tetrimino[SIZE]))
 		return (0);
-	ft_left_scol(tetrimino);
+	tetrimino[SCOL] = 0;
+	tetrimino[ECOL] = tetrimino[WIDTH];
 	tetrimino[SROW]++;
 	tetrimino[EROW]++;
-	while ((!(solution[tetrimino[SROW]] ^ full) || offbits[tetrimino[SROW]] < tetrimino[BITS0])
+	while ((!(solution[tetrimino[SROW]] ^ full) || offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
 	&& (tetrimino[EROW] ^ tetrimino[SIZE]))
 	{
 		++tetrimino[SROW];
