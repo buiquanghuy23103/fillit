@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/10 20:00:00 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 08:26:10 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_left_scol(int *tetrimino)
 int countTrailingZero(int x)
 {
 	int count;
-	
+
 	count = 0;
 	while ((x & 1) == 0)
 	{
@@ -73,7 +73,7 @@ void	ft_topleft(int *tetrimino)
 
 int ft_move(int *solution, int *tetrimino, int *offbits, int full)
 {
-	if (!(tetrimino[ECOL] ^ tetrimino[SIZE]))
+	if (!(tetrimino[ECOL] ^ tetrimino[SIZE]) || offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
 	{
 		if (!(tetrimino[EROW] ^ tetrimino[SIZE]))
 			return (0);
