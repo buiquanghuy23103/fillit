@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/11 08:03:08 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 00:53:52 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,31 @@ static const uint16_t	g_valid[19][9] =
 				{0b0000000000011011, 2, 3, 2, 2, 0, 0, 2, 0},
 				{0b0000001000110001, 3, 2, 1, 2, 1, 0, 2, 1}};
 
+void	ft_check_input(t_tetr *storage, uint16_t value)
+{
+	int i;
+
+	i = 0;
+	while (!(value % 2))
+		value >>= 1;
+	while (i < VALID_SIZE)
+	{
+		if (value == g_valid[i][0])
+		{
+			storage->tmino[storage->tcount][HEIGHT] = g_valid[i][1];
+			storage->tmino[storage->tcount][WIDTH] = g_valid[i][2];
+			storage->tmino[storage->tcount][BITS0] = g_valid[i][3];
+			storage->tmino[storage->tcount][BITS1] = g_valid[i][4];
+			storage->tmino[storage->tcount][BITS2] = g_valid[i][5];
+			storage->tmino[storage->tcount][BITS3] = g_valid[i][6];
+			storage->tmino[storage->tcount][MAXBITS] = g_valid[i][7];
+			storage->tmino[storage->tcount][MAXBIND] = g_valid[i][8];
+			return ;
+		}
+		++i;
+	}
+	ft_error();
+}
 
 void	ft_set_storage(t_tetr *storage, int *tmp)
 {
@@ -60,26 +85,7 @@ void	ft_set_storage(t_tetr *storage, int *tmp)
 		}
 		++i;
 	}
-	while (!(value % 2))
-		value >>= 1;
-	i = 0;
-	while (i < VALID_SIZE)
-	{
-		if (value == g_valid[i][0])
-		{
-			storage->tmino[storage->tcount][HEIGHT] = g_valid[i][1];
-			storage->tmino[storage->tcount][WIDTH] = g_valid[i][2];
-			storage->tmino[storage->tcount][BITS0] = g_valid[i][3];
-			storage->tmino[storage->tcount][BITS1] = g_valid[i][4];
-			storage->tmino[storage->tcount][BITS2] = g_valid[i][5];
-			storage->tmino[storage->tcount][BITS3] = g_valid[i][6];
-			storage->tmino[storage->tcount][MAXBITS] = g_valid[i][7];
-			storage->tmino[storage->tcount][MAXBIND] = g_valid[i][8];
-			return ;
-		}
-		++i;
-	}
-	ft_error();
+	ft_check_input(storage, value);
 }
 
 static void	ft_check_elems(char *tmp, t_tetr *storage)
@@ -90,8 +96,7 @@ static void	ft_check_elems(char *tmp, t_tetr *storage)
 
 	i = -1;
 	j = 0;
-	while (++i < 16)
-		t[i] = 0;
+	ft_bzero(t, sizeof(t));
 	i = -1;
 	while (tmp[++i])
 	{
@@ -149,8 +154,6 @@ void	ft_validate(int fd, t_tetr *storage)
 			last = 1;
 			tmp[20] = '\n';
 		}
-		if (ret == 21)
-			last = 0;
 		ft_check_elems(tmp, storage);
 		ret = read(fd, tmp, 21);
 		if ((!last && !ret) || (ret && storage->tcount == 26))

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 18:08:26 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 00:03:27 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,11 +63,16 @@ char	**ft_inil_array(t_tetr *t)
 	return (p);
 }
 
-void	ft_remove_piece(int *dst, int *src)
+void	ft_remove_piece(int *dst, int *src, int *offbits)
 {
 	int	scol;
 
 	scol = src[SCOL];
+
+	offbits[src[SROW]] += src[BITS0];
+	offbits[src[SROW] + 1] += src[BITS1];
+	offbits[src[SROW] + 2] += src[BITS2];
+	offbits[src[SROW] + 3] += src[BITS3];
 	while (*src)
 	{
 		*dst ^= (*src << scol);
@@ -76,15 +81,37 @@ void	ft_remove_piece(int *dst, int *src)
 	}
 }
 
-void	ft_place_piece(int *dst, int *src)
+void	ft_place_piece(int *dst, int *src, int *offbits)
 {
 	int	scol;
 
 	scol = src[SCOL];
+	offbits[src[SROW]] -= src[BITS0];
+	offbits[src[SROW] + 1] -= src[BITS1];
+	offbits[src[SROW] + 2] -= src[BITS2];
+	offbits[src[SROW] + 3] -= src[BITS3];
 	while (*src)
 	{
 		*dst |= (*src << scol);
 		dst++;
 		src++;
+	}
+}
+
+void	ft_reset_map(t_tetr *storage, int *offbits, int *full)
+{
+	int	i;
+
+	i = 0;
+	storage->tmino[i][SROW] = 0;
+	storage->tmino[i][EROW] = storage->tmino[i][HEIGHT];
+	storage->tmino[i][SCOL] = 0;
+	storage->tmino[i][ECOL] = storage->tmino[i][WIDTH];
+	ft_set_minsize(storage);
+	*full = ft_setbit(0, storage->tmino[i][SIZE]) - 1;
+	while (i < storage->tmino[i][SIZE])
+	{
+		offbits[i] = storage->tmino[i][SIZE];
+		i++;
 	}
 }

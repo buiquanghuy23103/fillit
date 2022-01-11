@@ -3,70 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
+/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/11 08:12:17 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 00:06:12 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_solve(int *solution, t_tetr *storage)
+void	ft_solve(int *solution, t_tetr *storage, int *offbits, int *full)
 {
 	int	i;
-	int	offbits[17];
-	int	full;
 
-	i = 0;
-	full = ft_setbit(0, storage->tmino[i][SIZE]) - 1;
-	ft_bzero(offbits, sizeof(offbits));
-	while (i < storage->tmino[i][SIZE])
-	{
-		offbits[i] = storage->tmino[i][SIZE];
-		++i;
-	}
 	i = 0;
 	while (i < storage->tcount)
 	{
 		if (ft_check_fit(solution + storage->tmino[i][SROW], storage->tmino[i]))
 		{
-			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i]);
-			offbits[storage->tmino[i][SROW]] -= storage->tmino[i][BITS0];
-			offbits[storage->tmino[i][SROW] + 1] -= storage->tmino[i][BITS1];
-			offbits[storage->tmino[i][SROW] + 2] -= storage->tmino[i][BITS2];
-			offbits[storage->tmino[i][SROW] + 3] -= storage->tmino[i][BITS3];
+			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i], offbits);
 			++i;
 			continue ;
 		}
-		while (!ft_move(storage->tmino[i], offbits, full, solution))
-		//while ((!ft_right(storage->tmino[i], offbits, full, solution)
-		//&& !ft_down(solution, storage->tmino[i], offbits, full)))
+		while (!ft_move(storage->tmino[i], offbits, *full, solution))
 		{
 			if (i == 0)
 			{
-				ft_topleft_scol(storage->tmino[i]);
-				ft_set_minsize(storage);
-				full = ft_setbit(0, storage->tmino[i][SIZE]) - 1;
-				while (i < storage->tmino[i][SIZE])
-				{
-					offbits[i] = storage->tmino[i][SIZE];
-					i++;
-				}
-				i = 0;
-				while (i < storage->tcount)
-					ft_topleft_scol(storage->tmino[i++]);
-				i = 0;
+				ft_reset_map(storage, offbits, full);
 				break ;
 			}
 			else
 			{
 				ft_topleft_scol(storage->tmino[i]);
-				ft_remove_piece(solution + storage->tmino[i - 1][SROW], storage->tmino[i - 1]);
-				offbits[storage->tmino[i - 1][SROW]] += storage->tmino[i - 1][BITS0];
-				offbits[storage->tmino[i - 1][SROW] + 1] += storage->tmino[i - 1][BITS1];
-				offbits[storage->tmino[i - 1][SROW] + 2] += storage->tmino[i - 1][BITS2];
-				offbits[storage->tmino[i - 1][SROW] + 3] += storage->tmino[i - 1][BITS3];
+				ft_remove_piece(solution + storage->tmino[i - 1][SROW], storage->tmino[i - 1], offbits);
 				--i;
 			}
 		}
