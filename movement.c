@@ -6,7 +6,7 @@
 /*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/11 08:50:09 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/11 09:00:52 by jpikkuma         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,7 @@ void	ft_topleft(int *tetrimino)
 int ft_move(int *solution, int *tetrimino, int *offbits, int full)
 {
 	if (!(tetrimino[ECOL] ^ tetrimino[SIZE])
-	|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS]
-	|| offbits[tetrimino[SROW]] + offbits[tetrimino[SROW + 1]] + offbits[tetrimino[SROW + 2]]
-		+ offbits[tetrimino[SROW + 3]] < 4)
+	|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
 	{
 		if (!(tetrimino[EROW] ^ tetrimino[SIZE]))
 			return (0);
@@ -86,9 +84,7 @@ int ft_move(int *solution, int *tetrimino, int *offbits, int full)
 		tetrimino[EROW]++;
 		while ((tetrimino[EROW] ^ tetrimino[SIZE])
 		&& (!(solution[tetrimino[SROW]] ^ full)
-		|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS]
-		|| offbits[tetrimino[SROW]] + offbits[tetrimino[SROW + 1]] + offbits[tetrimino[SROW + 2]]
-		+ offbits[tetrimino[SROW + 3]] < 4))
+		|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS]))
 		{
 			++tetrimino[SROW];
 			++tetrimino[EROW];
