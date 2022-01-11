@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/11 18:39:32 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 21:20:09 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ int	ft_move(int *tetrimino, int *offbits, int full, int *solution)
 	while (!(solution[tetrimino[SROW] + tetrimino[MAXBIND]] ^ row))
 	{
 		if (tetrimino[ECOL] == tetrimino[SIZE])
-			break ;
+			return (0);
 		++tetrimino[SCOL];
 		++tetrimino[ECOL];
 		row <<= 1;
