@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fillit.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/11 00:49:56 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/11 07:19:15 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ void	ft_topleft_incr(int *tetrimino);
 void	ft_topleft_scol(int *tetrimino);
 void	ft_top(int tetrimino[]);
 void	ft_left(int *tetrimino);
+void	ft_left_incr(int *tetrimino);
 int		ft_right(int *tetrimino, int *offbits, int full, int *solution);
 int		ft_down(int *solution, int *tetrimino, int *offbits, int full);
 int		ft_move(int *tetrimino, int *offbits, int full, int *solution);
