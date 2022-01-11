@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/11 21:20:09 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 22:19:30 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,6 +104,8 @@ int	ft_move(int *tetrimino, int *offbits, int full, int *solution)
 				!(solution[tetrimino[SROW]] ^ full)
 					|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS]
 					|| maxConsecutiveOnes(solution[tetrimino[SROW] + tetrimino[MAXBIND]] ^ full) < tetrimino[MAXBITS]
+					|| maxConsecutiveOnes(solution[tetrimino[SROW]] ^ full) < tetrimino[BITS0]
+					|| maxConsecutiveOnes(solution[tetrimino[SROW] + 1] ^ full) < tetrimino[BITS1]
 				)
 			)
 		{
