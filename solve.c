@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/10 19:59:35 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 08:12:17 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_solve(int *solution, t_tetr *storage)
 	i = 0;
 	while (i < storage->tcount)
 	{
-		// ft_print_tetriminos(storage, i + 1);ft_putchar('\n');
 		if (ft_check_fit(solution + storage->tmino[i][SROW], storage->tmino[i]))
 		{
 			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i]);
@@ -40,9 +39,9 @@ void	ft_solve(int *solution, t_tetr *storage)
 			++i;
 			continue ;
 		}
-		while (!ft_move(solution, storage->tmino[i], offbits, full))
-		//while (!ft_movetest(storage->tmino[i]))
-		//else
+		while (!ft_move(storage->tmino[i], offbits, full, solution))
+		//while ((!ft_right(storage->tmino[i], offbits, full, solution)
+		//&& !ft_down(solution, storage->tmino[i], offbits, full)))
 		{
 			if (i == 0)
 			{
@@ -56,7 +55,7 @@ void	ft_solve(int *solution, t_tetr *storage)
 				}
 				i = 0;
 				while (i < storage->tcount)
-					ft_top(storage->tmino[i++]);
+					ft_topleft_scol(storage->tmino[i++]);
 				i = 0;
 				break ;
 			}
