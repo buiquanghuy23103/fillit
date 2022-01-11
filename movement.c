@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/11 08:02:19 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 17:20:57 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ int	ft_move(int *tetrimino, int *offbits, int full, int *solution)
 {
 	int row;
 
-	row = tetrimino[MAXBIND];
+	row = tetrimino[tetrimino[MAXBIND]];
 	if (tetrimino[ECOL] == tetrimino[SIZE]
 	|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
 	{
@@ -95,13 +95,13 @@ int	ft_move(int *tetrimino, int *offbits, int full, int *solution)
 	}
 	++tetrimino[SCOL];
 	++tetrimino[ECOL];
-	while (!(solution[tetrimino[SROW]] ^ row))
+	while (!(solution[tetrimino[SROW] + tetrimino[MAXBIND]] ^ row))
 	{
 		if (tetrimino[ECOL] == tetrimino[SIZE])
 			break ;
 		++tetrimino[SCOL];
 		++tetrimino[ECOL];
-		row >>= 1;
+		row <<= 1;
 	}
 	return (1);
 }
