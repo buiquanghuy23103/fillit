@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/11 17:20:57 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/11 18:36:17 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,20 @@ void	ft_topleft(int *tetrimino)
 	ft_left(tetrimino);
 }
 
+int maxConsecutiveOnes(int x)
+{
+    int count = 0;
+
+    while (x!=0)
+    {
+        x = (x & (x << 1));
+
+        count++;
+    }
+
+    return count;
+}
+
 int	ft_move(int *tetrimino, int *offbits, int full, int *solution)
 {
 	int row;
@@ -84,9 +98,14 @@ int	ft_move(int *tetrimino, int *offbits, int full, int *solution)
 		ft_left_scol(tetrimino);
 		tetrimino[SROW]++;
 		tetrimino[EROW]++;
-		while ((!(solution[tetrimino[SROW]] ^ full)
-		|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS])
-		&& (tetrimino[EROW] ^ tetrimino[SIZE]))
+		while (
+			(tetrimino[EROW] ^ tetrimino[SIZE])
+			&& (
+				!(solution[tetrimino[SROW]] ^ full)
+					|| offbits[tetrimino[SROW] + tetrimino[MAXBIND]] < tetrimino[MAXBITS]
+					|| maxConsecutiveOnes(solution[tetrimino[SROW] + tetrimino[MAXBIND]] ^ full) < tetrimino[MAXBITS]
+				)
+			)
 		{
 			++tetrimino[SROW];
 			++tetrimino[EROW];
