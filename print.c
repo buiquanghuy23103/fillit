@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/09 19:52:45 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 11:55:12 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@ void	ft_print_tetrimino(int *arr, char **p, int c)
 {
 	int	i;
 	int	j;
-	int k;
-	int num;
+	int	k;
+	int	num;
 
 	k = 0;
 	i = arr[SROW];
