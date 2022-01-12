@@ -6,17 +6,11 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/09 18:08:26 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 13:49:07 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void	ft_error(void)
-{
-	ft_putstr("error\n");
-	exit(EXIT_FAILURE);
-}
 
 void	ft_inil_tetr(t_tetr	*tetr, int size)
 {
@@ -63,11 +57,15 @@ char	**ft_inil_array(t_tetr *t)
 	return (p);
 }
 
-void	ft_remove_piece(int *dst, int *src)
+void	ft_rm(int *dst, int *src, int *offbits)
 {
 	int	scol;
 
 	scol = src[SCOL];
+	offbits[src[SROW]] += src[B0];
+	offbits[src[SROW] + 1] += src[B1];
+	offbits[src[SROW] + 2] += src[B2];
+	offbits[src[SROW] + 3] += src[B3];
 	while (*src)
 	{
 		*dst ^= (*src << scol);
@@ -76,15 +74,39 @@ void	ft_remove_piece(int *dst, int *src)
 	}
 }
 
-void	ft_place_piece(int *dst, int *src)
+int	ft_add(int *dst, int *src, int *offbits)
 {
 	int	scol;
 
 	scol = src[SCOL];
+	offbits[src[SROW]] -= src[B0];
+	offbits[src[SROW] + 1] -= src[B1];
+	offbits[src[SROW] + 2] -= src[B2];
+	offbits[src[SROW] + 3] -= src[B3];
 	while (*src)
 	{
 		*dst |= (*src << scol);
 		dst++;
 		src++;
 	}
+	return (1);
+}
+
+int	ft_reset(t_tetr *storage, int *offbits, int *full)
+{
+	int	i;
+
+	i = 0;
+	storage->tmino[i][SROW] = 0;
+	storage->tmino[i][EROW] = storage->tmino[i][HEIGHT];
+	storage->tmino[i][SCOL] = 0;
+	storage->tmino[i][ECOL] = storage->tmino[i][WIDTH];
+	ft_set_minsize(storage);
+	*full = ft_setbit(0, storage->tmino[i][SIZE]) - 1;
+	while (i < storage->tmino[i][SIZE])
+	{
+		offbits[i] = storage->tmino[i][SIZE];
+		i++;
+	}
+	return (1);
 }
