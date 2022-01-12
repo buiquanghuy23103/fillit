@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 11:29:33 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 13:43:00 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,10 +69,10 @@ void	ft_rm(int *dst, int *src, int *offbits)
 
 	scol = src[SCOL];
 
-	offbits[src[SROW]] += src[BITS0];
-	offbits[src[SROW] + 1] += src[BITS1];
-	offbits[src[SROW] + 2] += src[BITS2];
-	offbits[src[SROW] + 3] += src[BITS3];
+	offbits[src[SROW]] += src[B0];
+	offbits[src[SROW] + 1] += src[B1];
+	offbits[src[SROW] + 2] += src[B2];
+	offbits[src[SROW] + 3] += src[B3];
 	while (*src)
 	{
 		*dst ^= (*src << scol);
@@ -86,10 +86,10 @@ int	ft_add(int *dst, int *src, int *offbits)
 	int	scol;
 
 	scol = src[SCOL];
-	offbits[src[SROW]] -= src[BITS0];
-	offbits[src[SROW] + 1] -= src[BITS1];
-	offbits[src[SROW] + 2] -= src[BITS2];
-	offbits[src[SROW] + 3] -= src[BITS3];
+	offbits[src[SROW]] -= src[B0];
+	offbits[src[SROW] + 1] -= src[B1];
+	offbits[src[SROW] + 2] -= src[B2];
+	offbits[src[SROW] + 3] -= src[B3];
 	while (*src)
 	{
 		*dst |= (*src << scol);

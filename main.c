@@ -3,14 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/12 00:58:36 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/12 12:03:22 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	ft_topleft(int *tetrimino)
+{
+	ft_top(tetrimino);
+	ft_left(tetrimino);
+}
 
 void	ft_setup_storage(t_tetr *storage, int *offbits)
 {

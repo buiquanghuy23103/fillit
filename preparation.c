@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 11:57:15 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 13:45:20 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,11 +52,11 @@ void	ft_check_input(t_tetr *s, uint16_t value)
 		{
 			s->tmino[s->tcount][HEIGHT] = g_valid[i][1];
 			s->tmino[s->tcount][WIDTH] = g_valid[i][2];
-			s->tmino[s->tcount][BITS0] = g_valid[i][3];
-			s->tmino[s->tcount][BITS1] = g_valid[i][4];
-			s->tmino[s->tcount][BITS2] = g_valid[i][5];
-			s->tmino[s->tcount][BITS3] = g_valid[i][6];
-			s->tmino[s->tcount][MAXBITS] = g_valid[i][7];
+			s->tmino[s->tcount][B0] = g_valid[i][3];
+			s->tmino[s->tcount][B1] = g_valid[i][4];
+			s->tmino[s->tcount][B2] = g_valid[i][5];
+			s->tmino[s->tcount][B3] = g_valid[i][6];
+			s->tmino[s->tcount][MAXB] = g_valid[i][7];
 			s->tmino[s->tcount][MAXBIND] = g_valid[i][8];
 			return ;
 		}

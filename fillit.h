@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 11:29:41 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 13:45:13 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,11 @@
 # define INFO_SIZE 6
 # define VALID_SIZE 19
 # define MAXBIND 17
-# define MAXBITS 16
-# define BITS3 15
-# define BITS2 14
-# define BITS1 13
-# define BITS0 12
+# define MAXB 16
+# define B3 15
+# define B2 14
+# define B1 13
+# define B0 12
 # define EROW 11
 # define ECOL 10
 # define SCOL 9
@@ -46,7 +46,7 @@ void	ft_topleft_scol(int *tetrimino);
 void	ft_top(int tetrimino[]);
 void	ft_left(int *tetrimino);
 void	ft_left_incr(int *tetrimino);
-int		ft_move(int *tet, int *of, int full, int *sol);
+void	ft_left_scol(int *tetrimino);
 void	ft_error(void);
 void	ft_inil_tetr(t_tetr	*tetr, int size);
 char	**ft_inil_array(t_tetr *t);

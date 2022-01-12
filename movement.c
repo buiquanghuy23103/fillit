@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 07:44:59 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 13:01:03 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,51 +51,4 @@ void	ft_topleft_scol(int *tetrimino)
 {
 	ft_top(tetrimino);
 	ft_left_scol(tetrimino);
-}
-
-void	ft_topleft(int *tetrimino)
-{
-	ft_top(tetrimino);
-	ft_left(tetrimino);
-}
-
-void	ft_one_down(int *tet)
-{
-	++tet[SROW];
-	++tet[EROW];
-}
-
-void	ft_one_right(int *tet)
-{
-	++tet[SCOL];
-	++tet[ECOL];
-}
-
-int	ft_move(int *tet, int *ofb, int full, int *sol)
-{
-	int row;
-
-	row = tet[tet[MAXBIND]];
-	if (tet[ECOL] == tet[SIZE] || ofb[tet[SROW] + tet[MAXBIND]] < tet[MAXBITS])
-	{
-		if (!(tet[EROW] ^ tet[SIZE]))
-			return (0);
-		ft_left_scol(tet);
-		ft_one_down(tet);
-		while ((tet[EROW] ^ tet[SIZE]) && (!(sol[tet[SROW]] ^ full)
-			|| ofb[tet[SROW]] < tet[BITS0] || ofb[tet[SROW] + 1] < tet[BITS1]
-			|| ft_max1bits(sol[tet[SROW] + tet[MAXBIND]] ^ full) < tet[MAXBITS]
-			|| ft_max1bits(sol[tet[SROW] + 1] ^ full) < tet[BITS1]))
-			ft_one_down(tet);
-		return (1);
-	}
-	ft_one_right(tet);
-	while (!(sol[tet[SROW] + tet[MAXBIND]] ^ row))
-	{
-		if (tet[ECOL] == tet[SIZE])
-			return (0);
-		ft_one_right(tet);
-		row <<= 1;
-	}
-	return (1);
 }
