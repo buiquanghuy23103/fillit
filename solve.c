@@ -6,23 +6,11 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/12 13:45:30 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 14:07:42 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-static void	ft_one_down(int *tet)
-{
-	++tet[SROW];
-	++tet[EROW];
-}
-
-static void	ft_one_right(int *tet)
-{
-	++tet[SCOL];
-	++tet[ECOL];
-}
 
 static int	ft_move(int *tet, int *ofb, int full, int *sol)
 {
@@ -34,20 +22,19 @@ static int	ft_move(int *tet, int *ofb, int full, int *sol)
 		if (!(tet[EROW] ^ tet[SIZE]))
 			return (0);
 		ft_left_scol(tet);
-		ft_one_down(tet);
-		while ((tet[EROW] ^ tet[SIZE]) && (!(sol[tet[SROW]] ^ full)
-				|| ofb[tet[SROW]] < tet[B0] || ofb[tet[SROW] + 1] < tet[B1]
-				|| ft_max1bits(sol[tet[SROW] + tet[MAXBIND]] ^ full) < tet[MAXB]
-				|| ft_max1bits(sol[tet[SROW] + 1] ^ full) < tet[B1]))
-			ft_one_down(tet);
+		while (++tet[SROW] && ++tet[EROW] && ((tet[EROW] ^ tet[SIZE])
+				&& (!(sol[tet[SROW]] ^ full)
+					|| ofb[tet[SROW]] < tet[B0] || ofb[tet[SROW] + 1] < tet[B1]
+					|| ft_max1bits(sol[tet[SROW] + tet[MAXBIND]] ^ full)
+					< tet[MAXB]
+					|| ft_max1bits(sol[tet[SROW] + 1] ^ full) < tet[B1])))
+			;
 		return (1);
 	}
-	ft_one_right(tet);
-	while (!(sol[tet[SROW] + tet[MAXBIND]] ^ row))
+	while (++tet[SCOL] && ++tet[ECOL] && !(sol[tet[SROW] + tet[MAXBIND]] ^ row))
 	{
 		if (tet[ECOL] == tet[SIZE])
 			return (0);
-		ft_one_right(tet);
 		row <<= 1;
 	}
 	return (1);
