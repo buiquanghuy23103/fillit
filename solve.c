@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/12 14:07:42 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 22:03:49 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static int	ft_move(int *tet, int *ofb, int full, int *sol)
 	while (++tet[SCOL] && ++tet[ECOL] && !(sol[tet[SROW] + tet[MAXBIND]] ^ row))
 	{
 		if (tet[ECOL] == tet[SIZE])
-			return (0);
+			break ;
 		row <<= 1;
 	}
 	return (1);
