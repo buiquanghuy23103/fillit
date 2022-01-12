@@ -6,13 +6,13 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/12 07:24:45 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 07:25:13 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 07:52:18 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 int	ft_trailing0bit_count(int x)
 {
-	int count;
+	int	count;
 
 	count = 0;
 	while ((x & 1) == 0)
@@ -20,5 +20,5 @@ int	ft_trailing0bit_count(int x)
 		x = x >> 1;
 		count++;
 	}
-	return count;
+	return (count);
 }
