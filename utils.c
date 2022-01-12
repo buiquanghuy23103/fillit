@@ -6,17 +6,11 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 13:43:00 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 13:49:07 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-
-void	ft_error(void)
-{
-	ft_putstr("error\n");
-	exit(EXIT_FAILURE);
-}
 
 void	ft_inil_tetr(t_tetr	*tetr, int size)
 {
@@ -68,7 +62,6 @@ void	ft_rm(int *dst, int *src, int *offbits)
 	int	scol;
 
 	scol = src[SCOL];
-
 	offbits[src[SROW]] += src[B0];
 	offbits[src[SROW] + 1] += src[B1];
 	offbits[src[SROW] + 2] += src[B2];

@@ -6,11 +6,17 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/12 12:03:22 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 13:48:46 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+void	ft_error(void)
+{
+	ft_putstr("error\n");
+	exit(EXIT_FAILURE);
+}
 
 void	ft_topleft(int *tetrimino)
 {
