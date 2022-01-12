@@ -3,39 +3,39 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/12 00:06:12 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/12 09:58:46 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_solve(int *solution, t_tetr *storage, int *offbits, int *full)
+void	ft_solve(int *sol, t_tetr *s, int *offbits, int *full)
 {
 	int	i;
 
 	i = 0;
-	while (i < storage->tcount)
+	while (i < s->tcount)
 	{
-		if (ft_check_fit(solution + storage->tmino[i][SROW], storage->tmino[i]))
+		if (ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i]))
 		{
-			ft_place_piece(solution + storage->tmino[i][SROW], storage->tmino[i], offbits);
+			ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits);
 			++i;
 			continue ;
 		}
-		while (!ft_move(storage->tmino[i], offbits, *full, solution))
+		while (!ft_move(s->tmino[i], offbits, *full, sol))
 		{
 			if (i == 0)
 			{
-				ft_reset_map(storage, offbits, full);
+				ft_reset_map(s, offbits, full);
 				break ;
 			}
 			else
 			{
-				ft_topleft_scol(storage->tmino[i]);
-				ft_remove_piece(solution + storage->tmino[i - 1][SROW], storage->tmino[i - 1], offbits);
+				ft_topleft_scol(s->tmino[i]);
+				ft_rm(sol + s->tmino[i - 1][SROW], s->tmino[i - 1], offbits);
 				--i;
 			}
 		}

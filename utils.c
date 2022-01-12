@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 00:03:27 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/12 09:58:56 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ char	**ft_inil_array(t_tetr *t)
 	return (p);
 }
 
-void	ft_remove_piece(int *dst, int *src, int *offbits)
+void	ft_rm(int *dst, int *src, int *offbits)
 {
 	int	scol;
 
@@ -81,7 +81,7 @@ void	ft_remove_piece(int *dst, int *src, int *offbits)
 	}
 }
 
-void	ft_place_piece(int *dst, int *src, int *offbits)
+void	ft_add(int *dst, int *src, int *offbits)
 {
 	int	scol;
 
