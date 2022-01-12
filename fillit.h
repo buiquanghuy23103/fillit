@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 09:59:09 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 11:29:41 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ int		ft_check_fit(int *dst, int *src);
 int		ft_check_fit_tmp(int *dst, int *src, int *offbits, int full);
 void	ft_rm(int *dst, int *src, int *offbits);
 void	ft_solve(int *solution, t_tetr *storage, int *offbits, int *full);
-void	ft_add(int *dst, int *src, int *offbits);
+int		ft_add(int *dst, int *src, int *offbits);
 void	ft_set_minsize(t_tetr *storage);
 void	ft_set_storage(t_tetr *storage, int *tmp);
-void	ft_reset_map(t_tetr *storage, int *offbits, int *full);
+int		ft_reset(t_tetr *storage, int *offbits, int *full);
 
 #endif

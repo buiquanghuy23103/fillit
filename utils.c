@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 09:58:56 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/12 11:29:33 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	ft_rm(int *dst, int *src, int *offbits)
 	}
 }
 
-void	ft_add(int *dst, int *src, int *offbits)
+int	ft_add(int *dst, int *src, int *offbits)
 {
 	int	scol;
 
@@ -96,9 +96,10 @@ void	ft_add(int *dst, int *src, int *offbits)
 		dst++;
 		src++;
 	}
+	return (1);
 }
 
-void	ft_reset_map(t_tetr *storage, int *offbits, int *full)
+int	ft_reset(t_tetr *storage, int *offbits, int *full)
 {
 	int	i;
 
@@ -114,4 +115,5 @@ void	ft_reset_map(t_tetr *storage, int *offbits, int *full)
 		offbits[i] = storage->tmino[i][SIZE];
 		i++;
 	}
+	return (1);
 }
