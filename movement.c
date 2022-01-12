@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   movement.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 01:12:41 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/12 07:44:59 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,18 +23,7 @@ void	ft_left_scol(int *tetrimino)
 	tetrimino[SCOL] = 0;
 	tetrimino[ECOL] = tetrimino[WIDTH];
 }
-int countTrailingZero(int x)
-{
-	int count;
 
-	count = 0;
-	while ((x & 1) == 0)
-	{
-		x = x >> 1;
-		count++;
-	}
-	return count;
-}
 void	ft_left(int *tetrimino)
 {
 	int	i;
@@ -47,7 +36,7 @@ void	ft_left(int *tetrimino)
 	trail_zero = 0;
 	while (tetrimino[++i])
 	{
-		trail_zero = countTrailingZero(tetrimino[i]);
+		trail_zero = ft_trailing0bit_count(tetrimino[i]);
 		if (shift > trail_zero)
 			shift = trail_zero;
 	}
@@ -56,20 +45,6 @@ void	ft_left(int *tetrimino)
 		return ;
 	while (tetrimino[++i])
 		tetrimino[i] >>= shift;
-}
-
-int maxOnes(int x)
-{
-	int count = 0;
-
-	while (x!=0)
-	{
-	x = (x & (x << 1));
-
-	count++;
-	}
-
-	return count;
 }
 
 void	ft_topleft_scol(int *tetrimino)
@@ -109,9 +84,8 @@ int	ft_move(int *tet, int *ofb, int full, int *sol)
 		ft_one_down(tet);
 		while ((tet[EROW] ^ tet[SIZE]) && (!(sol[tet[SROW]] ^ full)
 			|| ofb[tet[SROW]] < tet[BITS0] || ofb[tet[SROW] + 1] < tet[BITS1]
-			|| maxOnes(sol[tet[SROW] + tet[MAXBIND]] ^ full) < tet[MAXBITS]
-			|| maxOnes(sol[tet[SROW] + tet[MAXBIND]] ^ full) < tet[MAXBITS]
-			|| maxOnes(sol[tet[SROW] + 1] ^ full) < tet[BITS1]))
+			|| ft_max1bits(sol[tet[SROW] + tet[MAXBIND]] ^ full) < tet[MAXBITS]
+			|| ft_max1bits(sol[tet[SROW] + 1] ^ full) < tet[BITS1]))
 			ft_one_down(tet);
 		return (1);
 	}
