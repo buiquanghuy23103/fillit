@@ -44,6 +44,7 @@ void	ft_solve(int *sol, t_tetr *s, int *offbits, int *full)
 		if (!ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i])
 			|| !ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits)
 			|| ++i < 0)
+		{
 			while (!ft_move(s->tmino[i], offbits, *full, sol)
 				&& (i != 0 || !ft_reset(s, offbits, full)))
 			{
@@ -51,5 +52,6 @@ void	ft_solve(int *sol, t_tetr *s, int *offbits, int *full)
 				ft_rm(sol + s->tmino[i - 1][SROW], s->tmino[i - 1], offbits);
 				--i;
 			}
+		}
 	}
 }
