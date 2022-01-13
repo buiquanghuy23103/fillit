@@ -39,9 +39,7 @@ void	ft_check_input(t_tetr *s, uint16_t value)
 	int	i;
 
 	i = 0;
-	if (!value)
-		ft_error();
-	while (!(value % 2))
+	while (value && !(value % 2))
 		value >>= 1;
 	while (i < VALID_SIZE)
 	{
