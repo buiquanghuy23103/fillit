@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   solve.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/13 02:19:07 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/13 08:06:07 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,11 +41,9 @@ void	ft_solve(int *sol, t_tetr *s, int *offbits, int *full)
 	i = 0;
 	while (i < s->tcount)
 	{
-		if (ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i]) &&
-		ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits))
-			++i;
-		else
-		{
+		if (!ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i])
+			|| !ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits)
+			|| ++i < 0)
 			while (!ft_move(s->tmino[i], offbits, *full, sol)
 				&& (i != 0 || !ft_reset(s, offbits, full)))
 			{
@@ -53,6 +51,5 @@ void	ft_solve(int *sol, t_tetr *s, int *offbits, int *full)
 				ft_rm(sol + s->tmino[i - 1][SROW], s->tmino[i - 1], offbits);
 				--i;
 			}
-		}
 	}
 }
