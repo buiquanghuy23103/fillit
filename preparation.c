@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   preparation.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+        */
+/*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 16:57:16 by jpikkuma         ###   ########.fr       */
+/*   Updated: 2022/01/26 20:39:18 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,6 @@ void	ft_validate(int fd, t_tetr *s)
 	}
 	if (!s->tcount || !(!ret && s->tcount > 0))
 		ft_error();
-	if (s->tcount > 1 || s->tmino[0][WIDTH] > 2 || s->tmino[0][HEIGHT] > 2)
+	if (s->tcount > 1)
 		ft_set_minsize(s);
 }

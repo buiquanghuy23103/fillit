@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/26 16:27:34 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 20:35:37 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,17 +44,15 @@ void	ft_solve(int *sol, t_tetr *s, int *offbits, int *full)
 		if (s->tmino[i][WIDTH] > s->tmino[i][SIZE]
 			|| s->tmino[i][HEIGHT] > s->tmino[i][SIZE])
 			ft_reset(s, offbits, full);
-		if (!ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i])
-			|| !ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits)
-			|| ++i < 0)
+		if (ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i])
+			&& ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits) && ++i > 0)
+			continue ;
+		while (!ft_move(s->tmino[i], offbits, *full, sol)
+			&& (i != 0 || !ft_reset(s, offbits, full)))
 		{
-			while (!ft_move(s->tmino[i], offbits, *full, sol)
-				&& (i != 0 || !ft_reset(s, offbits, full)))
-			{
-				ft_topleft_scol(s->tmino[i]);
-				ft_rm(sol + s->tmino[i - 1][SROW], s->tmino[i - 1], offbits);
-				--i;
-			}
+			ft_topleft_scol(s->tmino[i]);
+			ft_rm(sol + s->tmino[i - 1][SROW], s->tmino[i - 1], offbits);
+			--i;
 		}
 	}
 }
