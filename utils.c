@@ -6,13 +6,13 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/26 21:28:42 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 22:03:25 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_inil_tetr(t_tetr	*tetr, int size)
+void	ft_init_storage(t_tetr	*tetr)
 {
 	int	i;
 	int	j;
@@ -26,7 +26,6 @@ void	ft_inil_tetr(t_tetr	*tetr, int size)
 			tetr->tmino[i][j] = 0;
 			++j;
 		}
-		tetr->tmino[i][SIZE] = size;
 		j = 0;
 		++i;
 	}

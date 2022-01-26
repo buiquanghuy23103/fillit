@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/26 21:27:28 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 22:06:53 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,6 @@ void	ft_error(void)
 {
 	ft_putstr("error\n");
 	exit(EXIT_FAILURE);
-}
-
-void	ft_topleft(int *tetrimino)
-{
-	ft_top(tetrimino);
-	ft_left(tetrimino);
 }
 
 int	main(int argc, char **argv)
@@ -39,7 +33,6 @@ int	main(int argc, char **argv)
 		ft_putstr("usage:\t./fillit target_file\n");
 		return (0);
 	}
-	ft_inil_tetr(storage, 2);
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_error();

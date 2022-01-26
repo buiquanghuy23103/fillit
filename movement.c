@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 13:01:03 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 22:09:37 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	ft_left_scol(int *tetrimino)
 	tetrimino[ECOL] = tetrimino[WIDTH];
 }
 
-void	ft_left(int *tetrimino)
+static void	ft_left(int *tetrimino)
 {
 	int	i;
 	int	shift;
@@ -51,4 +51,10 @@ void	ft_topleft_scol(int *tetrimino)
 {
 	ft_top(tetrimino);
 	ft_left_scol(tetrimino);
+}
+
+void	ft_topleft(int *tetrimino)
+{
+	ft_top(tetrimino);
+	ft_left(tetrimino);
 }

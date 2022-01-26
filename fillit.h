@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/26 21:26:26 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 22:08:16 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,10 @@ typedef struct s_tetr
 }	t_tetr;
 
 void	ft_topleft(int *tetrimino);
-void	ft_topleft_incr(int *tetrimino);
 void	ft_topleft_scol(int *tetrimino);
-void	ft_top(int tetrimino[]);
-void	ft_left(int *tetrimino);
-void	ft_left_incr(int *tetrimino);
 void	ft_left_scol(int *tetrimino);
 void	ft_error(void);
-void	ft_inil_tetr(t_tetr	*tetr, int size);
+void	ft_init_storage(t_tetr	*tetr);
 void	ft_print_result(t_tetr *t, int index);
 void	ft_setup(int fd, t_tetr *storage, int *offbits);
 int		ft_check_fit(int *dst, int *src);

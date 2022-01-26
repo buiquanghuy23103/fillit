@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/26 21:28:12 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 22:03:10 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,6 +138,7 @@ void	ft_setup(int fd, t_tetr *s, int *offbits)
 	last = 0;
 	ret = read(fd, tmp, 21);
 	tmp[21] = '\0';
+	ft_init_storage(s);
 	while (ret == 21 || ret == 20)
 	{
 		if (ret == 20)
