@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/13 08:06:07 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 14:53:24 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ void	ft_solve(int *sol, t_tetr *s, int *offbits, int *full)
 	i = 0;
 	while (i < s->tcount)
 	{
+		if (s->tmino[i][WIDTH] > s->tmino[i][SIZE]
+			|| s->tmino[i][WIDTH] > s->tmino[i][SIZE])
+			ft_reset(s, offbits, full);
 		if (!ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i])
 			|| !ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits)
 			|| ++i < 0)
