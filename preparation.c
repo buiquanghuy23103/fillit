@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/26 20:39:18 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 21:28:12 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static const	uint16_t
 {0b0000000000011011, 2, 3, 2, 2, 0, 0, 2, 0},
 {0b0000001000110001, 3, 2, 1, 2, 1, 0, 2, 1}};
 
-void	ft_check_input(t_tetr *s, uint16_t value)
+static void	ft_check_and_add_info(t_tetr *s, uint16_t value)
 {
 	int	i;
 
@@ -60,7 +60,7 @@ void	ft_check_input(t_tetr *s, uint16_t value)
 	ft_error();
 }
 
-void	ft_set_storage(t_tetr *s, int *tmp)
+static void	ft_convert2binary(t_tetr *s, int *tmp)
 {
 	int			i;
 	uint16_t	value;
@@ -80,10 +80,10 @@ void	ft_set_storage(t_tetr *s, int *tmp)
 		}
 		++i;
 	}
-	ft_check_input(s, value);
+	ft_check_and_add_info(s, value);
 }
 
-static void	ft_check_elems(char *tmp, t_tetr *s)
+static void	ft_read_elem(char *tmp, t_tetr *s)
 {
 	int	i;
 	int	j;
@@ -107,29 +107,29 @@ static void	ft_check_elems(char *tmp, t_tetr *s)
 			ft_error();
 		j++;
 	}
-	ft_set_storage(s, t);
+	ft_convert2binary(s, t);
 	s->tcount++;
 }
 
-void	ft_set_minsize(t_tetr *s)
+static void	ft_setup_storage(t_tetr *storage, int *offbits)
 {
 	int	i;
-	int	j;
-	int	*tetr0;
 
-	tetr0 = s->tmino[0];
-	i = tetr0[SIZE] + 1;
-	j = 0;
-	while (s->tcount * 4 > i * i || i < tetr0[HEIGHT] || i < tetr0[WIDTH])
-		++i;
-	while (j < MAXTETRIMINOS)
+	i = 0;
+	while (i < storage->tcount)
 	{
-		s->tmino[j][SIZE] = i;
-		++j;
+		ft_topleft(storage->tmino[i]);
+		++i;
+	}
+	i = 0;
+	while (i < storage->tmino[i][SIZE])
+	{
+		offbits[i] = storage->tmino[i][SIZE];
+		++i;
 	}
 }
 
-void	ft_validate(int fd, t_tetr *s)
+void	ft_setup(int fd, t_tetr *s, int *offbits)
 {
 	char	tmp[22];
 	int		ret;
@@ -145,7 +145,7 @@ void	ft_validate(int fd, t_tetr *s)
 			last = 1;
 			tmp[20] = '\n';
 		}
-		ft_check_elems(tmp, s);
+		ft_read_elem(tmp, s);
 		ret = read(fd, tmp, 21);
 		if ((!last && !ret) || (ret && s->tcount == 26))
 			ft_error();
@@ -153,5 +153,6 @@ void	ft_validate(int fd, t_tetr *s)
 	if (!s->tcount || !(!ret && s->tcount > 0))
 		ft_error();
 	if (s->tcount > 1)
-		ft_set_minsize(s);
+		ft_increment_size(s);
+	ft_setup_storage(s, offbits);
 }

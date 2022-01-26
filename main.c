@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/12 13:48:46 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 21:27:28 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,24 +22,6 @@ void	ft_topleft(int *tetrimino)
 {
 	ft_top(tetrimino);
 	ft_left(tetrimino);
-}
-
-void	ft_setup_storage(t_tetr *storage, int *offbits)
-{
-	int	i;
-
-	i = 0;
-	while (i < storage->tcount)
-	{
-		ft_topleft(storage->tmino[i]);
-		++i;
-	}
-	i = 0;
-	while (i < storage->tmino[i][SIZE])
-	{
-		offbits[i] = storage->tmino[i][SIZE];
-		++i;
-	}
 }
 
 int	main(int argc, char **argv)
@@ -61,10 +43,9 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_error();
-	ft_validate(fd, storage);
-	ft_setup_storage(storage, offbits);
+	ft_setup(fd, storage, offbits);
 	full = ft_setbit(0, storage->tmino[0][SIZE]) - 1;
 	ft_solve(solution, storage, offbits, &full);
-	ft_print_tetriminos(storage, storage->tcount);
+	ft_print_result(storage, storage->tcount);
 	return (0);
 }

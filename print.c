@@ -6,13 +6,37 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/12 11:55:12 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 21:23:10 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_print_tetrimino(int *arr, char **p, int c)
+static char	**ft_init_printing(t_tetr *t)
+{
+	char	**p;
+	int		i;
+
+	i = 0;
+	p = (char **)ft_memalloc(sizeof(char *) * t->tmino[0][SIZE]);
+	if (!p)
+		ft_error();
+	while (i < t->tmino[0][SIZE])
+	{
+		p[i] = (char *)ft_memalloc(sizeof(char) * (t->tmino[0][SIZE] + 1));
+		if (!p[i])
+		{
+			while (i-- > 0)
+				free(p[i]);
+			ft_error();
+		}
+		ft_memset(p[i], '.', t->tmino[0][SIZE]);
+		i++;
+	}
+	return (p);
+}
+
+static void	ft_apply_tetr_to_result(int *arr, char **p, int c)
 {
 	int	i;
 	int	j;
@@ -36,16 +60,16 @@ void	ft_print_tetrimino(int *arr, char **p, int c)
 	}
 }
 
-void	ft_print_tetriminos(t_tetr *t, int index)
+void	ft_print_result(t_tetr *t, int index)
 {
 	char	**p;
 	int		i;
 
-	p = ft_inil_array(t);
+	p = ft_init_printing(t);
 	i = 0;
 	while (i < index)
 	{
-		ft_print_tetrimino(t->tmino[i], p, 'A' + i);
+		ft_apply_tetr_to_result(t->tmino[i], p, 'A' + i);
 		++i;
 	}
 	i = 0;

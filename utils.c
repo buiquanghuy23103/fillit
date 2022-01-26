@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 13:49:07 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/26 21:28:42 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,30 +31,6 @@ void	ft_inil_tetr(t_tetr	*tetr, int size)
 		++i;
 	}
 	tetr->tcount = 0;
-}
-
-char	**ft_inil_array(t_tetr *t)
-{
-	char	**p;
-	int		i;
-
-	i = 0;
-	p = (char **)ft_memalloc(sizeof(char *) * t->tmino[0][SIZE]);
-	if (!p)
-		ft_error();
-	while (i < t->tmino[0][SIZE])
-	{
-		p[i] = (char *)ft_memalloc(sizeof(char) * (t->tmino[0][SIZE] + 1));
-		if (!p[i])
-		{
-			while (i-- > 0)
-				free(p[i]);
-			ft_error();
-		}
-		ft_memset(p[i], '.', t->tmino[0][SIZE]);
-		i++;
-	}
-	return (p);
 }
 
 void	ft_rm(int *dst, int *src, int *offbits)
@@ -92,6 +68,24 @@ int	ft_add(int *dst, int *src, int *offbits)
 	return (1);
 }
 
+void	ft_increment_size(t_tetr *s)
+{
+	int	i;
+	int	j;
+	int	*tetr0;
+
+	tetr0 = s->tmino[0];
+	i = tetr0[SIZE] + 1;
+	j = 0;
+	while (s->tcount * 4 > i * i || i < tetr0[HEIGHT] || i < tetr0[WIDTH])
+		++i;
+	while (j < MAXTETRIMINOS)
+	{
+		s->tmino[j][SIZE] = i;
+		++j;
+	}
+}
+
 int	ft_reset(t_tetr *storage, int *offbits, int *full)
 {
 	int	i;
@@ -101,7 +95,7 @@ int	ft_reset(t_tetr *storage, int *offbits, int *full)
 	storage->tmino[i][EROW] = storage->tmino[i][HEIGHT];
 	storage->tmino[i][SCOL] = 0;
 	storage->tmino[i][ECOL] = storage->tmino[i][WIDTH];
-	ft_set_minsize(storage);
+	ft_increment_size(storage);
 	*full = ft_setbit(0, storage->tmino[i][SIZE]) - 1;
 	while (i < storage->tmino[i][SIZE])
 	{
