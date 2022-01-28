@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/26 22:08:16 by hbui             ###   ########.fr       */
+/*   Updated: 2022/01/28 13:26:24 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,28 @@
 # define SIZE 7
 # define SROW 6
 # define WIDTH 5
+
+/*
+* Index	Name	Value
+* 0		-		0000
+* 1		-		0111
+* 2		-		0010
+* 3		-		0000
+* 4		-		NULL
+* 5		WIDTH	3
+* 6		SROW	1
+* 7		SIZE	4 (size of the square)
+* 8		HEIGHT	2
+* 9		SCOL	1
+* 10	ECOL	3
+* 11	EROW	2
+* 12	B0		0
+* 13	B1		3
+* 14	B2		1
+* 15	B3		0
+* 16	MAXB	3
+* 17	MAXBIND	1
+*/
 
 typedef struct s_tetr
 {
