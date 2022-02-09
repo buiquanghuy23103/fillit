@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/09 14:26:37 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 14:30:06 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	ft_print_result(t_tetr *t, int tcount, int size);
 void	ft_setup(int fd, t_tetr *storage);
 int		ft_check_fit(int *dst, int *src);
 void	ft_rm(int *dst, int *src, int *offbits);
-int		ft_solve(int *solution, t_tetr *storage, int *offbits);
+int		ft_solve(t_tetr *storage);
 int		ft_add(int *dst, int *src, int *offbits);
 void	ft_increment_size(t_tetr *storage);
 void	ft_set_storage(t_tetr *storage, int *tmp);

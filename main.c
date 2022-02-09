@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 13:00:19 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 14:29:45 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,8 @@ int	main(int argc, char **argv)
 {
 	int		fd;
 	t_tetr	storage[1];
-	int		solution[16];
-	int		offbits[17];
 	int		size;
 
-	ft_bzero(solution, sizeof(solution));
-	ft_bzero(offbits, sizeof(offbits));
 	size = 0;
 	if (argc != 2)
 	{
@@ -38,7 +34,7 @@ int	main(int argc, char **argv)
 	if (fd == -1)
 		ft_error();
 	ft_setup(fd, storage);
-	size = ft_solve(solution, storage, offbits);
+	size = ft_solve(storage);
 	ft_print_result(storage, storage->tcount, size);
 	return (0);
 }

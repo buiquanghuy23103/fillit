@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 14:14:47 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 14:30:53 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,19 @@ static int	ft_move(int *tet, int *ofb, int full, int *sol, int size)
 	return (1);
 }
 
-int	ft_solve(int *sol, t_tetr *s, int *offbits)
+int	ft_solve(t_tetr *s)
 {
 	int	i;
 	int	size;
 	int	full;
+	int		sol[16];
+	int		offbits[17];
 
 	i = 0;
 	size = 1;
 	full = 1;
+	ft_bzero(sol, sizeof(sol));
+	ft_bzero(offbits, sizeof(offbits));
 	while (i < s->tcount)
 	{
 		if (s->tmino[i][WIDTH] > size
