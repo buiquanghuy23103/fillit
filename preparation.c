@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/26 22:03:10 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 12:55:03 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -111,7 +111,7 @@ static void	ft_read_elem(char *tmp, t_tetr *s)
 	s->tcount++;
 }
 
-static void	ft_setup_storage(t_tetr *storage, int *offbits)
+static void	ft_setup_storage(t_tetr *storage)
 {
 	int	i;
 
@@ -121,15 +121,9 @@ static void	ft_setup_storage(t_tetr *storage, int *offbits)
 		ft_topleft(storage->tmino[i]);
 		++i;
 	}
-	i = 0;
-	while (i < storage->tmino[i][SIZE])
-	{
-		offbits[i] = storage->tmino[i][SIZE];
-		++i;
-	}
 }
 
-void	ft_setup(int fd, t_tetr *s, int *offbits)
+void	ft_setup(int fd, t_tetr *s)
 {
 	char	tmp[22];
 	int		ret;
@@ -153,7 +147,5 @@ void	ft_setup(int fd, t_tetr *s, int *offbits)
 	}
 	if (!s->tcount || !(!ret && s->tcount > 0))
 		ft_error();
-	if (s->tcount > 1)
-		ft_increment_size(s);
-	ft_setup_storage(s, offbits);
+	ft_setup_storage(s);
 }

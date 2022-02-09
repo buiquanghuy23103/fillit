@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/26 22:03:25 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 12:50:19 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,25 +67,7 @@ int	ft_add(int *dst, int *src, int *offbits)
 	return (1);
 }
 
-void	ft_increment_size(t_tetr *s)
-{
-	int	i;
-	int	j;
-	int	*tetr0;
-
-	tetr0 = s->tmino[0];
-	i = tetr0[SIZE] + 1;
-	j = 0;
-	while (s->tcount * 4 > i * i || i < tetr0[HEIGHT] || i < tetr0[WIDTH])
-		++i;
-	while (j < MAXTETRIMINOS)
-	{
-		s->tmino[j][SIZE] = i;
-		++j;
-	}
-}
-
-int	ft_reset(t_tetr *storage, int *offbits, int *full)
+int	ft_reset(t_tetr *storage, int *offbits, int *full, int *size)
 {
 	int	i;
 
@@ -94,11 +76,11 @@ int	ft_reset(t_tetr *storage, int *offbits, int *full)
 	storage->tmino[i][EROW] = storage->tmino[i][HEIGHT];
 	storage->tmino[i][SCOL] = 0;
 	storage->tmino[i][ECOL] = storage->tmino[i][WIDTH];
-	ft_increment_size(storage);
-	*full = ft_setbit(0, storage->tmino[i][SIZE]) - 1;
-	while (i < storage->tmino[i][SIZE])
+	(*size)++;
+	*full = ft_setbit(0, *size) - 1;
+	while (i < *size)
 	{
-		offbits[i] = storage->tmino[i][SIZE];
+		offbits[i] = *size;
 		i++;
 	}
 	return (1);

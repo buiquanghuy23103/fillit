@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/26 22:06:53 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 13:00:19 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,11 @@ int	main(int argc, char **argv)
 	t_tetr	storage[1];
 	int		solution[16];
 	int		offbits[17];
-	int		full;
+	int		size;
 
 	ft_bzero(solution, sizeof(solution));
 	ft_bzero(offbits, sizeof(offbits));
+	size = 0;
 	if (argc != 2)
 	{
 		ft_putstr("usage:\t./fillit target_file\n");
@@ -36,9 +37,8 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_error();
-	ft_setup(fd, storage, offbits);
-	full = ft_setbit(0, storage->tmino[0][SIZE]) - 1;
-	ft_solve(solution, storage, offbits, &full);
-	ft_print_result(storage, storage->tcount);
+	ft_setup(fd, storage);
+	size = ft_solve(solution, storage, offbits);
+	ft_print_result(storage, storage->tcount, size);
 	return (0);
 }

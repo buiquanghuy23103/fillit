@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/28 13:26:24 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 14:26:37 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@
 # define ECOL 10
 # define SCOL 9
 # define HEIGHT 8
-# define SIZE 7
 # define SROW 6
 # define WIDTH 5
 
@@ -67,14 +66,14 @@ void	ft_topleft_scol(int *tetrimino);
 void	ft_left_scol(int *tetrimino);
 void	ft_error(void);
 void	ft_init_storage(t_tetr	*tetr);
-void	ft_print_result(t_tetr *t, int index);
-void	ft_setup(int fd, t_tetr *storage, int *offbits);
+void	ft_print_result(t_tetr *t, int tcount, int size);
+void	ft_setup(int fd, t_tetr *storage);
 int		ft_check_fit(int *dst, int *src);
 void	ft_rm(int *dst, int *src, int *offbits);
-void	ft_solve(int *solution, t_tetr *storage, int *offbits, int *full);
+int		ft_solve(int *solution, t_tetr *storage, int *offbits);
 int		ft_add(int *dst, int *src, int *offbits);
 void	ft_increment_size(t_tetr *storage);
 void	ft_set_storage(t_tetr *storage, int *tmp);
-int		ft_reset(t_tetr *storage, int *offbits, int *full);
+int		ft_reset(t_tetr *storage, int *offbits, int *full, int *size);
 
 #endif
