@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/09 12:50:19 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 15:08:30 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ void	ft_init_storage(t_tetr	*tetr)
 		j = 0;
 		++i;
 	}
-	tetr->tcount = 0;
 }
 
 void	ft_rm(int *dst, int *src, int *offbits)

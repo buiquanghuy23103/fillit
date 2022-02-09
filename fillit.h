@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/09 14:30:06 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 15:13:58 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,7 @@
 typedef struct s_tetr
 {
 	int	tmino[MAXTETRIMINOS][T_SIZE];
-	int	tcount;
+	// int	tcount;
 }	t_tetr;
 
 void	ft_topleft(int *tetrimino);
@@ -67,10 +67,10 @@ void	ft_left_scol(int *tetrimino);
 void	ft_error(void);
 void	ft_init_storage(t_tetr	*tetr);
 void	ft_print_result(t_tetr *t, int tcount, int size);
-void	ft_setup(int fd, t_tetr *storage);
+void	ft_setup(int fd, t_tetr *storage, int *count);
 int		ft_check_fit(int *dst, int *src);
 void	ft_rm(int *dst, int *src, int *offbits);
-int		ft_solve(t_tetr *storage);
+int		ft_solve(t_tetr *storage, int count);
 int		ft_add(int *dst, int *src, int *offbits);
 void	ft_increment_size(t_tetr *storage);
 void	ft_set_storage(t_tetr *storage, int *tmp);
