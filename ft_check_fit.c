@@ -6,22 +6,22 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 00:28:10 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/01/09 20:50:08 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 21:46:46 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	ft_check_fit(int *dst, int *src)
+int	ft_check_fit(int *dst, int *bin, int scol)
 {
-	int	scol;
+	int	i;
 
-	scol = src[SCOL];
-	while (*src)
+	i = 0;
+	while (i < 4)
 	{
-		if ((*src << scol) & *dst)
+		if ((bin[i] << scol) & *dst)
 			return (0);
-		src++;
+		i++;
 		dst++;
 	}
 	return (1);

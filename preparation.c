@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/09 15:08:04 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 20:26:15 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ static const	uint16_t
 {0b0000000000011011, 2, 3, 2, 2, 0, 0, 2, 0},
 {0b0000001000110001, 3, 2, 1, 2, 1, 0, 2, 1}};
 
-static void	ft_check_and_add_info(int *tetr, uint16_t value)
+static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 {
 	int	i;
 
@@ -45,14 +45,14 @@ static void	ft_check_and_add_info(int *tetr, uint16_t value)
 	{
 		if (value == g_valid[i][0])
 		{
-			tetr[HEIGHT] = g_valid[i][1];
-			tetr[WIDTH] = g_valid[i][2];
-			tetr[B0] = g_valid[i][3];
-			tetr[B1] = g_valid[i][4];
-			tetr[B2] = g_valid[i][5];
-			tetr[B3] = g_valid[i][6];
-			tetr[MAXB] = g_valid[i][7];
-			tetr[MAXBIND] = g_valid[i][8];
+			tetr->height = g_valid[i][1];
+			tetr->width = g_valid[i][2];
+			tetr->b0 = g_valid[i][3];
+			tetr->b1 = g_valid[i][4];
+			tetr->b2 = g_valid[i][5];
+			tetr->b3 = g_valid[i][6];
+			tetr->maxb = g_valid[i][7];
+			tetr->maxbind = g_valid[i][8];
 			return ;
 		}
 		++i;
@@ -60,7 +60,7 @@ static void	ft_check_and_add_info(int *tetr, uint16_t value)
 	ft_error();
 }
 
-static void	ft_convert2binary(int *tetr, int *tmp)
+static void	ft_convert2binary(t_tetr *tetr, int *tmp)
 {
 	int			i;
 	uint16_t	value;
@@ -76,10 +76,11 @@ static void	ft_convert2binary(int *tetr, int *tmp)
 			value |= 1 << (15 - i);
 			if (srow == -1)
 				srow = i / 4;
-			tetr[i / 4 - srow] |= 1 << (i % 4);
+			tetr->bin[i / 4 - srow] |= 1 << (i % 4);
 		}
 		++i;
 	}
+	tetr->bin[4] = 0;
 	ft_check_and_add_info(tetr, value);
 }
 
@@ -107,7 +108,7 @@ static void	ft_read_elem(char *tmp, t_tetr *s, int count)
 			ft_error();
 		j++;
 	}
-	ft_convert2binary(s->tmino[count], t);
+	ft_convert2binary(s + count, t);
 }
 
 static void	ft_setup_storage(t_tetr *storage, int count)
@@ -117,7 +118,7 @@ static void	ft_setup_storage(t_tetr *storage, int count)
 	i = 0;
 	while (i < count)
 	{
-		ft_topleft(storage->tmino[i]);
+		ft_topleft(storage + i);
 		++i;
 	}
 }
@@ -131,7 +132,6 @@ void	ft_setup(int fd, t_tetr *s, int *count)
 	last = 0;
 	ret = read(fd, tmp, 21);
 	tmp[21] = '\0';
-	ft_init_storage(s);
 	while (ret == 21 || ret == 20)
 	{
 		if (ret == 20)

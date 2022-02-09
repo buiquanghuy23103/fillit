@@ -6,30 +6,29 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 15:14:23 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 21:47:38 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	ft_move(int *tet, int *ofb, int full, int *sol, int size)
+static int	ft_move(t_tetr *tet, int *ofb, int full, int *sol, int size)
 {
-	if (tet[ECOL] == size || ofb[tet[SROW] + tet[MAXBIND]] < tet[MAXB])
+	if (tet->ecol == size || ofb[tet->srow + tet->maxbind] < tet->maxb)
 	{
-		if (!(tet[EROW] ^ size))
+		if (tet->erow == size)
 			return (0);
 		ft_left_scol(tet);
-		while (++tet[SROW] && ++tet[EROW] && ((tet[EROW] ^ size)
-				&& (!(sol[tet[SROW]] ^ full)
-					|| ofb[tet[SROW]] < tet[B0] || ofb[tet[SROW] + 1] < tet[B1]
-					|| ft_max1bits(sol[tet[SROW] + tet[MAXBIND]] ^ full)
-					< tet[MAXB]
-					|| ft_max1bits(sol[tet[SROW] + 1] ^ full) < tet[B1])))
+		while (++(tet->srow) && ++(tet->erow) && tet->erow != size
+				&& (sol[tet->srow] == full
+					|| ofb[tet->srow] < tet->b0 || ofb[tet->srow + 1] < tet->b1
+					|| ft_max1bits(sol[tet->srow + tet->maxbind] ^ full) < tet->maxb
+					|| ft_max1bits(sol[tet->srow + 1] ^ full) < tet->b1))
 			;
 		return (1);
 	}
-	while (++tet[SCOL] && ++tet[ECOL] && tet[ECOL] < size
-		&& !ft_check_fit(sol + tet[SROW], tet))
+	while (++(tet->scol) && ++(tet->ecol) && tet->ecol < size
+		&& !ft_check_fit(sol + tet->srow, tet->bin, tet->scol))
 		;
 	return (1);
 }
@@ -49,21 +48,19 @@ int	ft_solve(t_tetr *s, int count)
 	ft_bzero(offbits, sizeof(offbits));
 	while (i < count)
 	{
-		if (s->tmino[i][WIDTH] > size
-			|| s->tmino[i][HEIGHT] > size)
-			{
-				ft_reset(s, offbits, &full, &size);
-				continue ;
-			}
-		if (ft_check_fit(sol + s->tmino[i][SROW], s->tmino[i])
-			&& ft_add(sol + s->tmino[i][SROW], s->tmino[i], offbits) && ++i > 0)
-			continue ;
-		while (!ft_move(s->tmino[i], offbits, full, sol, size)
-			&& (i != 0 || !ft_reset(s, offbits, &full, &size)))
+		if (s[i].width > size || s[i].height > size)
 		{
-			ft_topleft_scol(s->tmino[i]);
-			ft_rm(sol + s->tmino[i - 1][SROW], s->tmino[i - 1], offbits);
-			--i;
+			ft_reset(s + 0, offbits, &full, &size);
+			continue ;
+		}
+		if (ft_check_fit(sol + s[i].srow, s[i].bin, s[i].scol)
+			&& ft_add(sol + s[i].srow, s + i, offbits) && ++i > 0)
+			continue ;
+		while (!ft_move(s + i, offbits, full, sol, size)
+			&& (i != 0 || !ft_reset(s + 0, offbits, &full, &size)))
+		{
+			ft_topleft_scol(s + i--);
+			ft_rm(sol + s[i].srow, s + i, offbits);
 		}
 	}
 	return (size);

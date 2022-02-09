@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 15:12:32 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 20:25:29 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	ft_error(void)
 int	main(int argc, char **argv)
 {
 	int		fd;
-	t_tetr	storage[1];
+	t_tetr	storage[MAXTETRIMINOS + 1];
 	int		size;
 	int		count;
 
@@ -35,6 +35,7 @@ int	main(int argc, char **argv)
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
 		ft_error();
+	ft_bzero(storage, sizeof(storage));
 	ft_setup(fd, storage, &count);
 	size = ft_solve(storage, count);
 	ft_print_result(storage, count, size);

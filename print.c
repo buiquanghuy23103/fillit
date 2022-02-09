@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 13:01:04 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/09 20:40:33 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ static char	**ft_init_printing(int size)
 	return (p);
 }
 
-static void	ft_apply_tetr_to_result(int *arr, char **p, int c, int size)
+static void	ft_apply_tetr_to_result(t_tetr tetr, char **p, int c, int size)
 {
 	int	i;
 	int	j;
@@ -44,11 +44,11 @@ static void	ft_apply_tetr_to_result(int *arr, char **p, int c, int size)
 	int	num;
 
 	k = 0;
-	i = arr[SROW];
+	i = tetr.srow;
 	j = size - 1;
-	while (k < arr[HEIGHT])
+	while (k < tetr.height)
 	{
-		num = arr[k] << arr[SCOL];
+		num = tetr.bin[k] << tetr.scol;
 		while (j >= 0)
 		{
 			if (ft_getbit(num, j))
@@ -69,7 +69,7 @@ void	ft_print_result(t_tetr *t, int tcount, int size)
 	i = 0;
 	while (i < tcount)
 	{
-		ft_apply_tetr_to_result(t->tmino[i], p, 'A' + i, size);
+		ft_apply_tetr_to_result(t[i], p, 'A' + i, size);
 		++i;
 	}
 	i = 0;
