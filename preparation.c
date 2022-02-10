@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 12:44:43 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 14:07:36 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 	ft_error();
 }
 
-static int	to_binary(char *tmp)
+static uint16_t	to_bin16(char *tmp)
 {
 	int			i;
 	int			row;
@@ -135,7 +135,7 @@ void	ft_setup(int fd, t_tetr *s, int *count)
 			last = 1;
 			tmp[20] = '\n';
 		}
-		ft_check_and_add_info(s + *count, to_binary(tmp));
+		ft_check_and_add_info(s + *count, to_bin16(tmp));
 		(*count)++;
 		ret = read(fd, tmp, 21);
 		if ((!last && !ret) || (ret && *count == 26))
