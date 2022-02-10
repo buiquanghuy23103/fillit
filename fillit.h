@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/09 21:15:54 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 14:13:49 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,6 +59,7 @@
 typedef struct s_tetr
 {
 	// int	tmino[MAXTETRIMINOS][T_SIZE];
+	uint64_t	bin64;
 	int	bin[5];
 	int	width;
 	int	height;

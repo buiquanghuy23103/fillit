@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 14:07:36 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 15:32:14 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,46 @@ static const	uint16_t
 {0b0000000000011011, 2, 3, 2, 2, 0, 0, 2, 0},
 {0b0000001000110001, 3, 2, 1, 2, 1, 0, 2, 1}};
 
+static void	putbin64(const uint64_t bin64)
+{
+	int	i;
+
+	i = 64;
+	while(--i >= 0)
+	{
+		if ((bin64 & ((uint64_t)1 << i)) != 0)
+			ft_putchar('1');
+		else
+			ft_putchar('0');
+		if (i % 16)
+			ft_putchar(' ');
+		else
+			ft_putchar('\n');
+	}
+	ft_putchar('\n');
+}
+
+static uint64_t	to_bin64(const uint16_t bin16)
+{
+	int	i;
+	int	position;
+	uint64_t	bin64;
+
+	i = -1;
+	position = 0;
+	bin64 = 0;
+	while (++i < 16)
+	{
+		if ((bin16 & (1 << i)) != 0)
+		{
+			position = i + 12 * (i / 4 + 1);
+			bin64 |= (((uint64_t)1U) << position);
+		}
+	}
+	putbin64(bin64);
+	return (bin64);
+}
+
 static void	set_tetr_bin(t_tetr *tetr, uint16_t bin)
 {
 	int			i;
@@ -60,6 +100,7 @@ static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 
 	i = 0;
 	set_tetr_bin(tetr, value);
+	tetr->bin64 = to_bin64(value);
 	while (value && !(value % 2))
 		value >>= 1;
 	while (i < VALID_SIZE)
