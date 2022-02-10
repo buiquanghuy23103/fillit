@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 15:32:14 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 16:30:44 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,16 +57,20 @@ static uint64_t	to_bin64(const uint16_t bin16)
 {
 	int	i;
 	int	position;
+	int	srow;
 	uint64_t	bin64;
 
-	i = -1;
+	i = 16;
 	position = 0;
+	srow = -1;
 	bin64 = 0;
-	while (++i < 16)
+	while (--i >= 0)
 	{
 		if ((bin16 & (1 << i)) != 0)
 		{
-			position = i + 12 * (i / 4 + 1);
+			if (srow == -1)
+				srow = 3 - i / 4;
+			position = i + 4 * srow + 12 * (i / 4 + 1 + srow);
 			bin64 |= (((uint64_t)1U) << position);
 		}
 	}
