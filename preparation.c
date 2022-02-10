@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/09 20:26:15 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 12:44:43 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,32 @@ static const	uint16_t
 {0b0000000000011011, 2, 3, 2, 2, 0, 0, 2, 0},
 {0b0000001000110001, 3, 2, 1, 2, 1, 0, 2, 1}};
 
+static void	set_tetr_bin(t_tetr *tetr, uint16_t bin)
+{
+	int			i;
+	int			srow;
+
+	i = 0;
+	srow = -1;
+	while (i < 16)
+	{
+		if (ft_getbit(bin, 15 - i))
+		{
+			if (srow == -1)
+				srow = i / 4;
+			tetr->bin[i / 4 - srow] |= 1 << (i % 4);
+		}
+		++i;
+	}
+	tetr->bin[4] = 0;
+}
+
 static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 {
 	int	i;
 
 	i = 0;
+	set_tetr_bin(tetr, value);
 	while (value && !(value % 2))
 		value >>= 1;
 	while (i < VALID_SIZE)
@@ -60,55 +81,30 @@ static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 	ft_error();
 }
 
-static void	ft_convert2binary(t_tetr *tetr, int *tmp)
+static int	to_binary(char *tmp)
 {
 	int			i;
-	uint16_t	value;
-	int			srow;
-
-	value = 0;
-	i = 0;
-	srow = -1;
-	while (i < 16)
-	{
-		if (tmp[i])
-		{
-			value |= 1 << (15 - i);
-			if (srow == -1)
-				srow = i / 4;
-			tetr->bin[i / 4 - srow] |= 1 << (i % 4);
-		}
-		++i;
-	}
-	tetr->bin[4] = 0;
-	ft_check_and_add_info(tetr, value);
-}
-
-static void	ft_read_elem(char *tmp, t_tetr *s, int count)
-{
-	int	i;
-	int	j;
-	int	t[16];
+	int			row;
+	uint16_t	bin;
 
 	i = -1;
-	j = 0;
-	ft_bzero(t, sizeof(t));
-	i = -1;
+	row = 0;
+	bin = 0;
 	while (tmp[++i])
 	{
 		if (!((i + 1) % 5) || !((i + 1) % 21))
 		{
 			if (tmp[i] != '\n')
 				ft_error();
+			row++;
 			continue ;
 		}
 		if (tmp[i] == '#')
-			t[j] = 1;
+			bin |= (1 << (15 - (i - row)));
 		else if (tmp[i] != '.')
 			ft_error();
-		j++;
 	}
-	ft_convert2binary(s + count, t);
+	return (bin);
 }
 
 static void	ft_setup_storage(t_tetr *storage, int count)
@@ -139,7 +135,7 @@ void	ft_setup(int fd, t_tetr *s, int *count)
 			last = 1;
 			tmp[20] = '\n';
 		}
-		ft_read_elem(tmp, s, *count);
+		ft_check_and_add_info(s + *count, to_binary(tmp));
 		(*count)++;
 		ret = read(fd, tmp, 21);
 		if ((!last && !ret) || (ret && *count == 26))
