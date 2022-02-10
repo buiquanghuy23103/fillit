@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jpikkuma <jpikkuma@student.42.fr>          +#+  +:+       +#+         #
+#    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2022/01/05 23:32:35 by jpikkima         ###   ########.fr        #
+#    Updated: 2022/02/10 15:45:48 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,11 +20,7 @@ LIB=-L$(LIBFT_DIR) -lft
 CFLAGS=-Wall -Werror -Wextra
 
 HEADERS=fillit.h
-SRCS = movement.c ft_check_fit.c
-SRCS += utils.c preparation.c
-SRCS += main.c
-SRCS += print.c
-SRCS += solve.c
+SRCS = movement.c utils.c preparation.c print.c solve.c main.c
 
 all: $(NAME)
 

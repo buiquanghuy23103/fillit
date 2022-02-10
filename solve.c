@@ -6,11 +6,26 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 21:47:38 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 15:45:02 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+
+static int	ft_check_fit(int *dst, int *bin, int scol)
+{
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		if ((bin[i] << scol) & *dst)
+			return (0);
+		i++;
+		dst++;
+	}
+	return (1);
+}
 
 static int	ft_move(t_tetr *tet, int *ofb, int full, int *sol, int size)
 {
