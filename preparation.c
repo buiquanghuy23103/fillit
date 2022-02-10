@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 16:52:23 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 18:08:19 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ static uint64_t	to_bin64(const uint16_t bin16)
 			if (srow == -1)
 				srow = 3 - i / 4;
 			position = i + 4 * srow + 12 * (i / 4 + 1 + srow);
-			bin64 |= (((uint64_t)1U) << position);
+			bin64 = ft_setbit(bin64, position);
 		}
 	}
 	putbin64(bin64);
@@ -144,7 +144,7 @@ static uint16_t	to_bin16(char *tmp)
 			continue ;
 		}
 		if (tmp[i] == '#')
-			bin |= (1 << (15 - (i - row)));
+			bin = ft_setbit(bin, 15 - (i - row));
 		else if (tmp[i] != '.')
 			ft_error();
 	}

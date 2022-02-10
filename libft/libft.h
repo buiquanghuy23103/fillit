@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 18:57:25 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 17:02:34 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 18:05:57 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,7 +100,7 @@ int		ft_set(int *ret, int new_val);
 int		get_next_line(const int fd, char **line);
 void	ft_open_close_file(const char *path, int oflag,
 			void (*handle_error)(void), void (*use)(int fd));
-int		ft_setbit(const int num, const unsigned int i);
+uint64_t	ft_setbit(const uint64_t num, const unsigned int i);
 int		ft_getbit(const uint64_t num, const unsigned int i);
 void	ft_swap(int *a, int *b);
 int		ft_trailing0bit_count(int x);
