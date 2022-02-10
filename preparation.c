@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 18:08:19 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 18:14:36 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,22 @@ static void	putbin64(const uint64_t bin64)
 	ft_putchar('\n');
 }
 
+static uint64_t	left(uint64_t bin64)
+{
+	int	i;
+
+	i = -1;
+	while (++i < 3)
+	{
+		if (!ft_getbit(bin64, 63)
+			&& !ft_getbit(bin64, 47)
+			&& !ft_getbit(bin64, 31)
+			&& !ft_getbit(bin64, 15))
+			bin64 <<= 1;
+	}
+	return (bin64);
+}
+
 static uint64_t	to_bin64(const uint16_t bin16)
 {
 	int	i;
@@ -73,6 +89,7 @@ static uint64_t	to_bin64(const uint16_t bin16)
 			bin64 = ft_setbit(bin64, position);
 		}
 	}
+	bin64 = left(bin64);
 	putbin64(bin64);
 	return (bin64);
 }
