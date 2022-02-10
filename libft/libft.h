@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/10/30 18:57:25 by hbui              #+#    #+#             */
-/*   Updated: 2022/01/12 07:45:38 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 17:02:34 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <fcntl.h>
+#include <stdint.h>
 
 # define BUFF_SIZE 8
 # define FD_MAX 4096
@@ -100,7 +101,7 @@ int		get_next_line(const int fd, char **line);
 void	ft_open_close_file(const char *path, int oflag,
 			void (*handle_error)(void), void (*use)(int fd));
 int		ft_setbit(const int num, const unsigned int i);
-int		ft_getbit(const int num, const unsigned int i);
+int		ft_getbit(const uint64_t num, const unsigned int i);
 void	ft_swap(int *a, int *b);
 int		ft_trailing0bit_count(int x);
 int		ft_max1bits(int x);

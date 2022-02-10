@@ -6,11 +6,13 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/30 15:35:54 by hbui              #+#    #+#             */
-/*   Updated: 2021/12/30 15:41:08 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 16:51:50 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int	ft_getbit(const int num, const unsigned int i)
+#include "libft.h"
+
+int	ft_getbit(const uint64_t num, const unsigned int i)
 {
-	return ((num & (1 << i)) != 0);
+	return ((num & (((uint64_t)1) << i)) != 0);
 }

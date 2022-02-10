@@ -6,12 +6,11 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 16:30:44 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/10 16:52:23 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
-#include <stdint.h>
 
 static const	uint16_t
 	g_valid[19][9] = {{0b0000000110010001, 3, 2, 2, 1, 1, 0, 2, 0},
@@ -41,7 +40,7 @@ static void	putbin64(const uint64_t bin64)
 	i = 64;
 	while(--i >= 0)
 	{
-		if ((bin64 & ((uint64_t)1 << i)) != 0)
+		if (ft_getbit(bin64, i))
 			ft_putchar('1');
 		else
 			ft_putchar('0');
@@ -66,7 +65,7 @@ static uint64_t	to_bin64(const uint16_t bin16)
 	bin64 = 0;
 	while (--i >= 0)
 	{
-		if ((bin16 & (1 << i)) != 0)
+		if (ft_getbit(bin16, i))
 		{
 			if (srow == -1)
 				srow = 3 - i / 4;
