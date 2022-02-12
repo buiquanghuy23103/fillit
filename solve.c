@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/12 23:04:45 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/12 23:12:15 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,8 @@ static int	ft_move(t_tetr *tet, int *ofb, int full, uint16_t *board, int size)
 			;
 		return (1);
 	}
-	while (++(tet->scol) && ++(tet->ecol) && tet->ecol < size
-		&& !ft_check_fit(board + tet->srow, tet->bin, tet->scol))
-		;
+	++(tet->scol);
+	++(tet->ecol);
 	return (1);
 }
 
