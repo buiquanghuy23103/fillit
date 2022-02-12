@@ -6,28 +6,28 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/10 15:45:02 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/12 22:59:37 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	ft_check_fit(int *dst, int *bin, int scol)
+static int	ft_check_fit(uint16_t *board, int *bin, int scol)
 {
 	int	i;
 
 	i = 0;
 	while (i < 4)
 	{
-		if ((bin[i] << scol) & *dst)
+		if ((bin[i] << scol) & *board)
 			return (0);
 		i++;
-		dst++;
+		board++;
 	}
 	return (1);
 }
 
-static int	ft_move(t_tetr *tet, int *ofb, int full, int *sol, int size)
+static int	ft_move(t_tetr *tet, int *ofb, int full, uint16_t *board, int size)
 {
 	if (tet->ecol == size || ofb[tet->srow + tet->maxbind] < tet->maxb)
 	{
@@ -35,15 +35,15 @@ static int	ft_move(t_tetr *tet, int *ofb, int full, int *sol, int size)
 			return (0);
 		ft_left_scol(tet);
 		while (++(tet->srow) && ++(tet->erow) && tet->erow != size
-				&& (sol[tet->srow] == full
+				&& (board[tet->srow] == full
 					|| ofb[tet->srow] < tet->b0 || ofb[tet->srow + 1] < tet->b1
-					|| ft_max1bits(sol[tet->srow + tet->maxbind] ^ full) < tet->maxb
-					|| ft_max1bits(sol[tet->srow + 1] ^ full) < tet->b1))
+					|| ft_max1bits(board[tet->srow + tet->maxbind] ^ full) < tet->maxb
+					|| ft_max1bits(board[tet->srow + 1] ^ full) < tet->b1))
 			;
 		return (1);
 	}
 	while (++(tet->scol) && ++(tet->ecol) && tet->ecol < size
-		&& !ft_check_fit(sol + tet->srow, tet->bin, tet->scol))
+		&& !ft_check_fit(board + tet->srow, tet->bin, tet->scol))
 		;
 	return (1);
 }
@@ -53,7 +53,7 @@ int	ft_solve(t_tetr *s, int count)
 	int	i;
 	int	size;
 	int	full;
-	int		sol[16];
+	uint16_t	sol[16];
 	int		offbits[17];
 
 	i = 0;

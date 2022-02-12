@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/10 18:14:36 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/12 23:00:23 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,24 +33,24 @@ static const	uint16_t
 {0b0000000000011011, 2, 3, 2, 2, 0, 0, 2, 0},
 {0b0000001000110001, 3, 2, 1, 2, 1, 0, 2, 1}};
 
-static void	putbin64(const uint64_t bin64)
-{
-	int	i;
+// static void	putbin64(const uint64_t bin64)
+// {
+// 	int	i;
 
-	i = 64;
-	while(--i >= 0)
-	{
-		if (ft_getbit(bin64, i))
-			ft_putchar('1');
-		else
-			ft_putchar('0');
-		if (i % 16)
-			ft_putchar(' ');
-		else
-			ft_putchar('\n');
-	}
-	ft_putchar('\n');
-}
+// 	i = 64;
+// 	while(--i >= 0)
+// 	{
+// 		if (ft_getbit(bin64, i))
+// 			ft_putchar('1');
+// 		else
+// 			ft_putchar('0');
+// 		if (i % 16)
+// 			ft_putchar(' ');
+// 		else
+// 			ft_putchar('\n');
+// 	}
+// 	ft_putchar('\n');
+// }
 
 static uint64_t	left(uint64_t bin64)
 {
@@ -90,7 +90,7 @@ static uint64_t	to_bin64(const uint16_t bin16)
 		}
 	}
 	bin64 = left(bin64);
-	putbin64(bin64);
+	// putbin64(bin64);
 	return (bin64);
 }
 
