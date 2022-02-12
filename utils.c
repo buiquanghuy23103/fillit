@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/12 22:57:54 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/12 23:05:02 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,39 +32,12 @@ int	manage_board(uint16_t *board, t_tetr *tetr, int *offbits, int action)
 
 void	ft_rm(uint16_t *board, t_tetr *tetr, int *offbits)
 {
-	// int	i;
-
-	// i = 0;
-	// offbits[tetr->srow] += tetr->b0;
-	// offbits[tetr->srow + 1] += tetr->b1;
-	// offbits[tetr->srow + 2] += tetr->b2;
-	// offbits[tetr->srow + 3] += tetr->b3;
-	// while (i < tetr->height)
-	// {
-	// 	*dst ^= (tetr->bin[i] << tetr->scol);
-	// 	dst++;
-	// 	i++;
-	// }
 	manage_board(board, tetr, offbits, -1);
 }
 
-int	ft_add(uint16_t *board, t_tetr *tetr, int *offbits)
+void	ft_add(uint16_t *board, t_tetr *tetr, int *offbits)
 {
-	// int	i;
-
-	// i = 0;
-	// offbits[tetr->srow] -= tetr->b0;
-	// offbits[tetr->srow + 1] -= tetr->b1;
-	// offbits[tetr->srow + 2] -= tetr->b2;
-	// offbits[tetr->srow + 3] -= tetr->b3;
-	// while (i < tetr->height)
-	// {
-	// 	*dst ^= (tetr->bin[i] << tetr->scol);
-	// 	i++;
-	// 	dst++;
-	// }
-	// return (1);
-	return (manage_board(board, tetr, offbits, 1));
+	manage_board(board, tetr, offbits, 1);
 }
 
 int	ft_reset(t_tetr *tetr0, int *offbits, int *full, int *size)

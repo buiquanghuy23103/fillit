@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/12 22:59:37 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/12 23:04:45 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,9 +68,12 @@ int	ft_solve(t_tetr *s, int count)
 			ft_reset(s + 0, offbits, &full, &size);
 			continue ;
 		}
-		if (ft_check_fit(sol + s[i].srow, s[i].bin, s[i].scol)
-			&& ft_add(sol + s[i].srow, s + i, offbits) && ++i > 0)
+		if (ft_check_fit(sol + s[i].srow, s[i].bin, s[i].scol))
+		{
+			ft_add(sol + s[i].srow, s + i, offbits);
+			++i;
 			continue ;
+		}
 		while (!ft_move(s + i, offbits, full, sol, size)
 			&& (i != 0 || !ft_reset(s + 0, offbits, &full, &size)))
 		{
