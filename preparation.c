@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 20:23:41 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 20:57:31 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,11 +120,6 @@ static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 		{
 			tetr->height = g_valid[i][1];
 			tetr->width = g_valid[i][2];
-			tetr->b0 = g_valid[i][3];
-			tetr->b1 = g_valid[i][4];
-			tetr->b2 = g_valid[i][5];
-			tetr->b3 = g_valid[i][6];
-			tetr->maxb = g_valid[i][7];
 			tetr->maxbind = g_valid[i][8];
 			return ;
 		}

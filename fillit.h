@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 20:34:47 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 20:57:37 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,6 @@ typedef struct s_tetr
 	int	erow;
 	int	scol;
 	int	ecol;
-	int	b0;
-	int	b1;
-	int	b2;
-	int	b3;
-	int	maxb;
 	int	maxbind;
 }	t_tetr;
 
