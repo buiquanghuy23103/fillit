@@ -6,7 +6,7 @@
 #    By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/12/20 22:11:31 by huybui            #+#    #+#              #
-#    Updated: 2022/02/10 15:45:48 by hbui             ###   ########.fr        #
+#    Updated: 2022/02/16 20:34:42 by hbui             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIB=-L$(LIBFT_DIR) -lft
 CFLAGS=-Wall -Werror -Wextra
 
 HEADERS=fillit.h
-SRCS = movement.c utils.c preparation.c print.c solve.c main.c
+SRCS = movement.c preparation.c print.c solve.c main.c
 
 all: $(NAME)
 

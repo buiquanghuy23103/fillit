@@ -6,11 +6,24 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/16 20:06:39 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 20:34:21 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+static int	ft_reset(t_tetr *tetr0, int *full, int *size)
+{
+	int	i;
+
+	i = 0;
+	tetr0->srow = 0;
+	tetr0->erow = tetr0->height;
+	tetr0->scol = 0;
+	tetr0->ecol = tetr0->width;
+	(*size)++;
+	*full = ft_setbit(0, *size) - 1;
+	return (1);
+}
 
 static int	ft_move(t_tetr *tet, int full, uint16_t *board, int size)
 {
@@ -51,7 +64,7 @@ int	ft_solve(t_tetr *s, int count)
 		}
 		if (!(*(uint64_t*)(sol + s[i].srow) & (s[i].bin64 << s[i].scol)))
 		{
-			ft_add(sol + s[i].srow, s + i);
+			*(uint64_t*)(sol + s[i].srow) ^= (s[i].bin64 << s[i].scol);
 			++i;
 			continue ;
 		}
@@ -59,7 +72,7 @@ int	ft_solve(t_tetr *s, int count)
 			&& (i != 0 || !ft_reset(s + 0, &full, &size)))
 		{
 			ft_topleft_scol(s + i--);
-			ft_rm(sol + s[i].srow, s + i);
+			*(uint64_t*)(sol + s[i].srow) ^= (s[i].bin64 << s[i].scol);
 		}
 	}
 	return (size);
