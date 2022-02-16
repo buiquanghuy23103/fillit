@@ -6,53 +6,25 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/16 22:10:37 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 22:38:44 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static char	**init(int size)
+static void	apply(t_tetr tetr, int p[16][16], int c, int size)
 {
-	char	**p;
-	int		i;
-
-	i = 0;
-	p = (char **)ft_memalloc(sizeof(char *) * size);
-	if (!p)
-		error();
-	while (i < size)
-	{
-		p[i] = (char *)ft_memalloc(sizeof(char) * (size + 1));
-		if (!p[i])
-		{
-			while (i-- > 0)
-				free(p[i]);
-			error();
-		}
-		ft_memset(p[i], '.', size);
-		i++;
-	}
-	return (p);
-}
-
-static void	apply(t_tetr tetr, char **p, int c, int size)
-{
-	int	i;
 	int	j;
 	int	k;
-	int	num;
 
 	k = 0;
-	i = tetr.srow;
 	j = size - 1;
 	while (k < tetr.height)
 	{
-		num = tetr.bin[k] << tetr.scol;
 		while (j >= 0)
 		{
-			if (ft_getbit(num, j))
-				p[i + k][j] = c;
+			if (ft_getbit(tetr.bin[k] << tetr.scol, j))
+				p[tetr.srow + k][j] = c;
 			--j;
 		}
 		j = size - 1;
@@ -62,23 +34,26 @@ static void	apply(t_tetr tetr, char **p, int c, int size)
 
 void	print(t_tetr *t, int tcount, int size)
 {
-	char	**p;
-	int		i;
+	int	board[16][16];
+	int	i;
+	int	j;
 
-	p = init(size);
-	i = 0;
-	while (i < tcount)
+	i = -1;
+	while (++i < size)
 	{
-		apply(t[i], p, 'A' + i, size);
-		++i;
+		j = -1;
+		while (++j < size)
+			board[i][j] = '.';
 	}
-	i = 0;
-	while (i < size)
+	i = -1;
+	while (++i < tcount)
+		apply(t[i], board, 'A' + i, size);
+	i = -1;
+	while (++i < size)
 	{
-		write(1, p[i], size);
-		free(p[i]);
-		++i;
+		j = -1;
+		while (++j < size)
+			ft_putchar(board[i][j]);
 		ft_putchar('\n');
 	}
-	free(p);
 }
