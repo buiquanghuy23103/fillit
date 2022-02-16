@@ -6,21 +6,17 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:46:57 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/12 23:05:02 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 20:07:03 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-int	manage_board(uint16_t *board, t_tetr *tetr, int *offbits, int action)
+int	manage_board(uint16_t *board, t_tetr *tetr)
 {
 	int	i;
 
 	i = 0;
-	offbits[tetr->srow] -= tetr->b0 * action;
-	offbits[tetr->srow + 1] -= tetr->b1 * action;
-	offbits[tetr->srow + 2] -= tetr->b2 * action;
-	offbits[tetr->srow + 3] -= tetr->b3 * action;
 	while (i < tetr->height)
 	{
 		*board ^= (tetr->bin[i] << tetr->scol);
@@ -30,17 +26,17 @@ int	manage_board(uint16_t *board, t_tetr *tetr, int *offbits, int action)
 	return (1);
 }
 
-void	ft_rm(uint16_t *board, t_tetr *tetr, int *offbits)
+void	ft_rm(uint16_t *board, t_tetr *tetr)
 {
-	manage_board(board, tetr, offbits, -1);
+	manage_board(board, tetr);
 }
 
-void	ft_add(uint16_t *board, t_tetr *tetr, int *offbits)
+void	ft_add(uint16_t *board, t_tetr *tetr)
 {
-	manage_board(board, tetr, offbits, 1);
+	manage_board(board, tetr);
 }
 
-int	ft_reset(t_tetr *tetr0, int *offbits, int *full, int *size)
+int	ft_reset(t_tetr *tetr0, int *full, int *size)
 {
 	int	i;
 
@@ -51,10 +47,5 @@ int	ft_reset(t_tetr *tetr0, int *offbits, int *full, int *size)
 	tetr0->ecol = tetr0->width;
 	(*size)++;
 	*full = ft_setbit(0, *size) - 1;
-	while (i < *size)
-	{
-		offbits[i] = *size;
-		i++;
-	}
 	return (1);
 }
