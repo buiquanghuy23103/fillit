@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 21:17:02 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 21:30:31 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,8 +85,8 @@ static uint64_t	to_bin64(int *bin)
 
 static void	set_tetr_bin(t_tetr *tetr, uint16_t bin)
 {
-	int			i;
-	int			srow;
+	int	i;
+	int	srow;
 
 	i = 0;
 	srow = -1;
@@ -103,13 +103,13 @@ static void	set_tetr_bin(t_tetr *tetr, uint16_t bin)
 	tetr->bin[4] = 0;
 }
 
-static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
+static void	build_tetr(t_tetr *tetr, uint16_t value)
 {
 	int	i;
 
 	i = 0;
 	if (!value)
-		ft_error();
+		error();
 	set_tetr_bin(tetr, value);
 	tetr->bin64 = to_bin64(tetr->bin);
 	while (!(value % 2))
@@ -121,12 +121,12 @@ static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 			tetr->height = g_valid[i][1];
 			tetr->width = g_valid[i][2];
 			tetr->maxbind = g_valid[i][8];
-			ft_topleft(tetr);
+			topleft(tetr);
 			return ;
 		}
 		++i;
 	}
-	ft_error();
+	error();
 }
 
 static uint16_t	to_bin16(char *tmp)
@@ -143,19 +143,19 @@ static uint16_t	to_bin16(char *tmp)
 		if (!((i + 1) % 5) || !((i + 1) % 21))
 		{
 			if (tmp[i] != '\n')
-				ft_error();
+				error();
 			row++;
 			continue ;
 		}
 		if (tmp[i] == '#')
 			bin = ft_setbit(bin, 15 - (i - row));
 		else if (tmp[i] != '.')
-			ft_error();
+			error();
 	}
 	return (bin);
 }
 
-void	ft_setup(int fd, t_tetr *s, int *count)
+void	setup(int fd, t_tetr *s, int *count)
 {
 	char	tmp[22];
 	int		ret;
@@ -171,12 +171,12 @@ void	ft_setup(int fd, t_tetr *s, int *count)
 			last = 1;
 			tmp[20] = '\n';
 		}
-		ft_check_and_add_info(s + *count, to_bin16(tmp));
+		build_tetr(s + *count, to_bin16(tmp));
 		(*count)++;
 		ret = read(fd, tmp, 21);
 		if ((!last && !ret) || (ret && *count == 26))
-			ft_error();
+			error();
 	}
 	if (!(*count) || !(!ret && *count > 0))
-		ft_error();
+		error();
 }

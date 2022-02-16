@@ -6,13 +6,13 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/02 17:57:53 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 20:25:29 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 22:12:03 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_error(void)
+void	error(void)
 {
 	ft_putstr("error\n");
 	exit(EXIT_FAILURE);
@@ -34,10 +34,10 @@ int	main(int argc, char **argv)
 	}
 	fd = open(argv[1], O_RDONLY);
 	if (fd == -1)
-		ft_error();
+		error();
 	ft_bzero(storage, sizeof(storage));
-	ft_setup(fd, storage, &count);
-	size = ft_solve(storage, count);
-	ft_print_result(storage, count, size);
+	setup(fd, storage, &count);
+	size = solve(storage, count);
+	print(storage, count, size);
 	return (0);
 }

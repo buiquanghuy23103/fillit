@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 20:57:37 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 21:48:53 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,14 +32,14 @@ typedef struct s_tetr
 	int	maxbind;
 }	t_tetr;
 
-void	ft_topleft(t_tetr *tetrimino);
-void	ft_topleft_scol(t_tetr *tetrimino);
-void	ft_left_scol(t_tetr *tetrimino);
-void	ft_error(void);
-void	ft_print_result(t_tetr *t, int tcount, int size);
-void	ft_setup(int fd, t_tetr *storage, int *count);
-int		ft_solve(t_tetr *storage, int count);
-void	ft_increment_size(t_tetr *storage);
-void	ft_set_storage(t_tetr *storage, int *tmp);
+void	topleft(t_tetr *tetrimino);
+void	topleft_scol(t_tetr *tetrimino);
+void	left_scol(t_tetr *tetrimino);
+void	error(void);
+void	print(t_tetr *t, int tcount, int size);
+void	setup(int fd, t_tetr *storage, int *count);
+int		solve(t_tetr *storage, int count);
+void	increment_size(t_tetr *storage);
+void	set_storage(t_tetr *storage, int *tmp);
 
 #endif

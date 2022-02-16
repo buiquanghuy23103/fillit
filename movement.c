@@ -6,25 +6,25 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 08:38:44 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/09 19:59:03 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 22:13:53 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-void	ft_top(t_tetr *tetrimino)
+static void	top(t_tetr *tetrimino)
 {
 	tetrimino->srow = 0;
 	tetrimino->erow = tetrimino->height;
 }
 
-void	ft_left_scol(t_tetr *tetrimino)
+void	left_scol(t_tetr *tetrimino)
 {
 	tetrimino->scol = 0;
 	tetrimino->ecol = tetrimino->width;
 }
 
-static void	ft_left(int *bin)
+static void	reset_bin(int *bin)
 {
 	int	i;
 	int	shift;
@@ -46,15 +46,15 @@ static void	ft_left(int *bin)
 		bin[i] >>= shift;
 }
 
-void	ft_topleft_scol(t_tetr *tetrimino)
+void	topleft_scol(t_tetr *tetrimino)
 {
-	ft_top(tetrimino);
-	ft_left_scol(tetrimino);
+	top(tetrimino);
+	left_scol(tetrimino);
 }
 
-void	ft_topleft(t_tetr *tetrimino)
+void	topleft(t_tetr *tetrimino)
 {
-	ft_top(tetrimino);
-	ft_left(tetrimino->bin);
-	ft_left_scol(tetrimino);
+	top(tetrimino);
+	reset_bin(tetrimino->bin);
+	left_scol(tetrimino);
 }

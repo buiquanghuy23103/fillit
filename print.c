@@ -6,13 +6,13 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 20:51:41 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/09 20:40:33 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 22:10:37 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static char	**ft_init_printing(int size)
+static char	**init(int size)
 {
 	char	**p;
 	int		i;
@@ -20,7 +20,7 @@ static char	**ft_init_printing(int size)
 	i = 0;
 	p = (char **)ft_memalloc(sizeof(char *) * size);
 	if (!p)
-		ft_error();
+		error();
 	while (i < size)
 	{
 		p[i] = (char *)ft_memalloc(sizeof(char) * (size + 1));
@@ -28,7 +28,7 @@ static char	**ft_init_printing(int size)
 		{
 			while (i-- > 0)
 				free(p[i]);
-			ft_error();
+			error();
 		}
 		ft_memset(p[i], '.', size);
 		i++;
@@ -36,7 +36,7 @@ static char	**ft_init_printing(int size)
 	return (p);
 }
 
-static void	ft_apply_tetr_to_result(t_tetr tetr, char **p, int c, int size)
+static void	apply(t_tetr tetr, char **p, int c, int size)
 {
 	int	i;
 	int	j;
@@ -60,16 +60,16 @@ static void	ft_apply_tetr_to_result(t_tetr tetr, char **p, int c, int size)
 	}
 }
 
-void	ft_print_result(t_tetr *t, int tcount, int size)
+void	print(t_tetr *t, int tcount, int size)
 {
 	char	**p;
 	int		i;
 
-	p = ft_init_printing(size);
+	p = init(size);
 	i = 0;
 	while (i < tcount)
 	{
-		ft_apply_tetr_to_result(t[i], p, 'A' + i, size);
+		apply(t[i], p, 'A' + i, size);
 		++i;
 	}
 	i = 0;
