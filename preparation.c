@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/12 23:00:23 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 17:27:25 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,41 +54,45 @@ static const	uint16_t
 
 static uint64_t	left(uint64_t bin64)
 {
-	int	i;
-
-	i = -1;
-	while (++i < 3)
+	while (1)
 	{
-		if (!ft_getbit(bin64, 63)
-			&& !ft_getbit(bin64, 47)
-			&& !ft_getbit(bin64, 31)
-			&& !ft_getbit(bin64, 15))
-			bin64 <<= 1;
+		if (!ft_getbit(bin64, 48)
+			&& !ft_getbit(bin64, 32)
+			&& !ft_getbit(bin64, 16)
+			&& !ft_getbit(bin64, 0))
+			bin64 >>= 1;
+		else
+			return (bin64);
 	}
 	return (bin64);
 }
 
-static uint64_t	to_bin64(const uint16_t bin16)
+static uint64_t	to_bin64(int *bin)
 {
 	int	i;
-	int	position;
-	int	srow;
+	// int	position;
+	// int	srow;
+	uint16_t	bin16[4];
 	uint64_t	bin64;
 
-	i = 16;
-	position = 0;
-	srow = -1;
-	bin64 = 0;
-	while (--i >= 0)
-	{
-		if (ft_getbit(bin16, i))
-		{
-			if (srow == -1)
-				srow = 3 - i / 4;
-			position = i + 4 * srow + 12 * (i / 4 + 1 + srow);
-			bin64 = ft_setbit(bin64, position);
-		}
-	}
+	i = -1;
+	while (++i < 4)
+		bin16[i] = (uint16_t)bin[i];
+	bin64 = *(uint64_t*)bin16;
+	// i = 16;
+	// position = 0;
+	// srow = -1;
+	// bin64 = 0;
+	// while (--i >= 0)
+	// {
+	// 	if (ft_getbit(bin16, i))
+	// 	{
+	// 		if (srow == -1)
+	// 			srow = 3 - i / 4;
+	// 		position = i + 4 * srow + 12 * (i / 4 + 1 + srow);
+	// 		bin64 = ft_setbit(bin64, position);
+	// 	}
+	// }
 	bin64 = left(bin64);
 	// putbin64(bin64);
 	return (bin64);
@@ -119,9 +123,11 @@ static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 	int	i;
 
 	i = 0;
+	if (!value)
+		ft_error();
 	set_tetr_bin(tetr, value);
-	tetr->bin64 = to_bin64(value);
-	while (value && !(value % 2))
+	tetr->bin64 = to_bin64(tetr->bin);
+	while (!(value % 2))
 		value >>= 1;
 	while (i < VALID_SIZE)
 	{

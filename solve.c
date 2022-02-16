@@ -6,25 +6,20 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/05 13:08:57 by jpikkuma          #+#    #+#             */
-/*   Updated: 2022/02/12 23:12:15 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 17:25:14 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static int	ft_check_fit(uint16_t *board, int *bin, int scol)
+static int	ft_check_fit(uint16_t *board, uint64_t bin64, int scol)
 {
-	int	i;
+	uint64_t	board64;
+	uint64_t	tetr64;
 
-	i = 0;
-	while (i < 4)
-	{
-		if ((bin[i] << scol) & *board)
-			return (0);
-		i++;
-		board++;
-	}
-	return (1);
+	board64 = *(uint64_t*)board;
+	tetr64 = bin64 << scol;
+	return !(board64 & tetr64);
 }
 
 static int	ft_move(t_tetr *tet, int *ofb, int full, uint16_t *board, int size)
@@ -67,7 +62,7 @@ int	ft_solve(t_tetr *s, int count)
 			ft_reset(s + 0, offbits, &full, &size);
 			continue ;
 		}
-		if (ft_check_fit(sol + s[i].srow, s[i].bin, s[i].scol))
+		if (ft_check_fit(sol + s[i].srow, s[i].bin64, s[i].scol))
 		{
 			ft_add(sol + s[i].srow, s + i, offbits);
 			++i;
