@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 20:57:31 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 21:17:02 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,6 +121,7 @@ static void	ft_check_and_add_info(t_tetr *tetr, uint16_t value)
 			tetr->height = g_valid[i][1];
 			tetr->width = g_valid[i][2];
 			tetr->maxbind = g_valid[i][8];
+			ft_topleft(tetr);
 			return ;
 		}
 		++i;
@@ -154,18 +155,6 @@ static uint16_t	to_bin16(char *tmp)
 	return (bin);
 }
 
-static void	ft_setup_storage(t_tetr *storage, int count)
-{
-	int	i;
-
-	i = 0;
-	while (i < count)
-	{
-		ft_topleft(storage + i);
-		++i;
-	}
-}
-
 void	ft_setup(int fd, t_tetr *s, int *count)
 {
 	char	tmp[22];
@@ -190,5 +179,4 @@ void	ft_setup(int fd, t_tetr *s, int *count)
 	}
 	if (!(*count) || !(!ret && *count > 0))
 		ft_error();
-	ft_setup_storage(s, *count);
 }
