@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 20:10:06 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 20:23:30 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,24 +15,9 @@
 
 # include "libft.h"
 # include <fcntl.h>
-#     include <stdio.h>
 
 # define MAXTETRIMINOS 26
-# define T_SIZE 18
-# define INFO_SIZE 6
 # define VALID_SIZE 19
-# define MAXBIND 17
-# define MAXB 16
-# define B3 15
-# define B2 14
-# define B1 13
-# define B0 12
-# define EROW 11
-# define ECOL 10
-# define SCOL 9
-# define HEIGHT 8
-# define SROW 6
-# define WIDTH 5
 
 typedef struct s_tetr
 {
