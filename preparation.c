@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 17:27:25 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/16 19:59:06 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,8 +70,6 @@ static uint64_t	left(uint64_t bin64)
 static uint64_t	to_bin64(int *bin)
 {
 	int	i;
-	// int	position;
-	// int	srow;
 	uint16_t	bin16[4];
 	uint64_t	bin64;
 
@@ -79,20 +77,6 @@ static uint64_t	to_bin64(int *bin)
 	while (++i < 4)
 		bin16[i] = (uint16_t)bin[i];
 	bin64 = *(uint64_t*)bin16;
-	// i = 16;
-	// position = 0;
-	// srow = -1;
-	// bin64 = 0;
-	// while (--i >= 0)
-	// {
-	// 	if (ft_getbit(bin16, i))
-	// 	{
-	// 		if (srow == -1)
-	// 			srow = 3 - i / 4;
-	// 		position = i + 4 * srow + 12 * (i / 4 + 1 + srow);
-	// 		bin64 = ft_setbit(bin64, position);
-	// 	}
-	// }
 	bin64 = left(bin64);
 	// putbin64(bin64);
 	return (bin64);
