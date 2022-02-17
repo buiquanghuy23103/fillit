@@ -6,7 +6,7 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/21 22:27:39 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 21:48:53 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/17 06:40:30 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,13 @@
 typedef struct s_tetr
 {
 	uint64_t	bin64;
-	int	bin[5];
-	int	width;
-	int	height;
-	int	srow;
-	int	erow;
-	int	scol;
-	int	ecol;
-	int	maxbind;
+	int			bin[5];
+	int			width;
+	int			height;
+	int			srow;
+	int			erow;
+	int			scol;
+	int			ecol;
 }	t_tetr;
 
 void	topleft(t_tetr *tetrimino);
