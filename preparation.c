@@ -6,14 +6,13 @@
 /*   By: hbui <hbui@student.hive.fi>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/01/04 15:42:27 by hbui              #+#    #+#             */
-/*   Updated: 2022/02/16 21:30:31 by hbui             ###   ########.fr       */
+/*   Updated: 2022/02/17 07:02:38 by hbui             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
 
-static const	uint16_t
-	g_valid[VALID_SIZE][9] = {
+static const uint16_t	g_valid[VALID_SIZE][9] = {
 {0b0000000110010001, 3, 2, 2, 1, 1, 0, 2, 0},
 {0b0000000001110001, 2, 3, 3, 1, 0, 0, 3, 0},
 {0b0000000100010011, 3, 2, 1, 1, 2, 0, 2, 2},
@@ -34,27 +33,16 @@ static const	uint16_t
 {0b0000000000011011, 2, 3, 2, 2, 0, 0, 2, 0},
 {0b0000001000110001, 3, 2, 1, 2, 1, 0, 2, 1}};
 
-// static void	putbin64(const uint64_t bin64)
-// {
-// 	int	i;
-
-// 	i = 64;
-// 	while(--i >= 0)
-// 	{
-// 		if (ft_getbit(bin64, i))
-// 			ft_putchar('1');
-// 		else
-// 			ft_putchar('0');
-// 		if (i % 16)
-// 			ft_putchar(' ');
-// 		else
-// 			ft_putchar('\n');
-// 	}
-// 	ft_putchar('\n');
-// }
-
-static uint64_t	left(uint64_t bin64)
+static uint64_t	to_bin64(int *bin)
 {
+	int			i;
+	uint16_t	bin16[4];
+	uint64_t	bin64;
+
+	i = -1;
+	while (++i < 4)
+		bin16[i] = (uint16_t)bin[i];
+	bin64 = *(uint64_t *)bin16;
 	while (1)
 	{
 		if (!ft_getbit(bin64, 48)
@@ -63,36 +51,22 @@ static uint64_t	left(uint64_t bin64)
 			&& !ft_getbit(bin64, 0))
 			bin64 >>= 1;
 		else
-			return (bin64);
+			break ;
 	}
 	return (bin64);
 }
 
-static uint64_t	to_bin64(int *bin)
-{
-	int	i;
-	uint16_t	bin16[4];
-	uint64_t	bin64;
-
-	i = -1;
-	while (++i < 4)
-		bin16[i] = (uint16_t)bin[i];
-	bin64 = *(uint64_t*)bin16;
-	bin64 = left(bin64);
-	// putbin64(bin64);
-	return (bin64);
-}
-
-static void	set_tetr_bin(t_tetr *tetr, uint16_t bin)
+static void	build_bin_array(t_tetr *tetr, uint16_t bin16)
 {
 	int	i;
 	int	srow;
 
 	i = 0;
 	srow = -1;
+	ft_bzero(tetr->bin, sizeof(tetr->bin));
 	while (i < 16)
 	{
-		if (ft_getbit(bin, 15 - i))
+		if (ft_getbit(bin16, 15 - i))
 		{
 			if (srow == -1)
 				srow = i / 4;
@@ -100,7 +74,6 @@ static void	set_tetr_bin(t_tetr *tetr, uint16_t bin)
 		}
 		++i;
 	}
-	tetr->bin[4] = 0;
 }
 
 static void	build_tetr(t_tetr *tetr, uint16_t value)
@@ -110,7 +83,7 @@ static void	build_tetr(t_tetr *tetr, uint16_t value)
 	i = 0;
 	if (!value)
 		error();
-	set_tetr_bin(tetr, value);
+	build_bin_array(tetr, value);
 	tetr->bin64 = to_bin64(tetr->bin);
 	while (!(value % 2))
 		value >>= 1;
@@ -120,7 +93,6 @@ static void	build_tetr(t_tetr *tetr, uint16_t value)
 		{
 			tetr->height = g_valid[i][1];
 			tetr->width = g_valid[i][2];
-			tetr->maxbind = g_valid[i][8];
 			topleft(tetr);
 			return ;
 		}
